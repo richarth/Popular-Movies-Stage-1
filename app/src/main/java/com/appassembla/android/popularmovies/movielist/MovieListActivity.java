@@ -60,7 +60,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView(recyclerView);
 
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
