@@ -25,21 +25,22 @@ public class MovieDetailsPresenterTest {
     @Mock
     private MoviesRepository moviesRepository;
     private MovieDetailsPresenter movieDetailsPresenter;
+    private int clickedPosition;
 
     private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies();
 
     @Before
     public void setUp() throws Exception {
-        movieDetailsPresenter = new MovieDetailsPresenter(movieDetailsView, moviesRepository);
+        clickedPosition = 2;
+
+        movieDetailsPresenter = new MovieDetailsPresenter(movieDetailsView, moviesRepository, clickedPosition);
     }
 
     @Test
     public void shouldShowMovieDetail() {
-        int clickedPosition = 1;
-
         when(moviesRepository.getMovie(clickedPosition)).thenReturn(SOME_MOVIES.get(clickedPosition));
 
-        movieDetailsPresenter.displayMovie(clickedPosition);
+        movieDetailsPresenter.displayMovie();
 
         verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(clickedPosition));
     }

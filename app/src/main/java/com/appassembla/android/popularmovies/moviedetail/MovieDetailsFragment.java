@@ -41,7 +41,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            setupPresenter();
+            setupPresenter(getArguments().getInt(ARG_ITEM_ID));
         }
     }
 
@@ -61,7 +61,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         super.onResume();
 
         if (movieDetailsPresenter != null) {
-            movieDetailsPresenter.displayMovie(getArguments().getInt(ARG_ITEM_ID));
+            movieDetailsPresenter.displayMovie();
         }
     }
 
@@ -73,8 +73,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         }
     }
 
-    private void setupPresenter() {
-        movieDetailsPresenter = new MovieDetailsPresenter(this, new StaticMoviesRepository());
+    private void setupPresenter(int selectedMovieId) {
+        movieDetailsPresenter = new MovieDetailsPresenter(this, new StaticMoviesRepository(), selectedMovieId);
     }
 
     @Override
