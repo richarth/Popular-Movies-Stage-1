@@ -4,6 +4,6 @@ package com.appassembla.android.popularmovies.movielist;
  * Created by Richard Thompson on 04/02/2017.
  */
 
-public interface MovieListEvents {
+interface MovieListEvents {
     void movieClicked(int position);
 }
