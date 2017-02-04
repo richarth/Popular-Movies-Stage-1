@@ -7,5 +7,5 @@ import java.util.List;
  */
 
 public interface MovieListRepository {
-    public List<Movie> getMovies();
+    List<Movie> getMovies();
 }

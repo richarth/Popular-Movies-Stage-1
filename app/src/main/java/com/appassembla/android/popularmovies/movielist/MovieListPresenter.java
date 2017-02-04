@@ -14,7 +14,7 @@ public class MovieListPresenter implements MovieListEvents {
     private final MovieListRepository movieListRepository;
     private List<Movie> movies;
 
-    public MovieListPresenter(MovieListView movieListView, MovieListRepository movieListRepository) {
+    public MovieListPresenter(@NonNull MovieListView movieListView, @NonNull MovieListRepository movieListRepository) {
         this.movieListView = movieListView;
         this.movieListRepository = movieListRepository;
     }

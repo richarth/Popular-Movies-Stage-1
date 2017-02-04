@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public interface MovieListView {
-    public void displayMoviesList(List<Movie> moviesList);
-    public void displayNoMoviesMessage();
-    public void displayMovieDetail(Movie movie);
+    void displayMoviesList(List<Movie> moviesList);
+    void displayNoMoviesMessage();
+    void displayMovieDetail(Movie movie);
 }

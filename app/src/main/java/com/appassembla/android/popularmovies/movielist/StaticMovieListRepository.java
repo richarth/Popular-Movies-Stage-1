@@ -1,5 +1,7 @@
 package com.appassembla.android.popularmovies.movielist;
 
+import android.support.annotation.NonNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 public class StaticMovieListRepository implements MovieListRepository {
     @Override
+    @NonNull
     public List<Movie> getMovies() {
         Movie movie1 = new Movie();
         movie1.setMovieId(1);

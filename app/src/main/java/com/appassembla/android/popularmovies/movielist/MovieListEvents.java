@@ -5,5 +5,5 @@ package com.appassembla.android.popularmovies.movielist;
  */
 
 public interface MovieListEvents {
-    public void movieClicked(int position);
+    void movieClicked(int position);
 }

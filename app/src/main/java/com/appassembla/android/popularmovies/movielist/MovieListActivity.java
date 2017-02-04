@@ -87,7 +87,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    public void displayMoviesList(List<Movie> movies) {
+    public void displayMoviesList(@NonNull List<Movie> movies) {
         recyclerView.setVisibility(View.VISIBLE);
 
         setupRecyclerView(recyclerView, movies);
@@ -99,7 +99,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    public void displayMovieDetail(Movie movie) {
+    public void displayMovieDetail(@NonNull Movie movie) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
