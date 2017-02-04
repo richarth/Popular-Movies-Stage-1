@@ -1,4 +1,4 @@
-package com.appassembla.android.popularmovies;
+package com.appassembla.android.popularmovies.moviedetail;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.dummy.DummyContent;
+import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 
 /**
  * A fragment representing a single Movie detail screen.

@@ -1,4 +1,4 @@
-package com.appassembla.android.popularmovies;
+package com.appassembla.android.popularmovies.movielist;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import com.appassembla.android.popularmovies.moviedetail.MovieDetailActivity;
+import com.appassembla.android.popularmovies.moviedetail.MovieDetailFragment;
+import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.dummy.DummyContent;
 
 import java.util.List;
