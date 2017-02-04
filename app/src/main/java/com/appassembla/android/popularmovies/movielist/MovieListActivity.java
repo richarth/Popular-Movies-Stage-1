@@ -46,17 +46,37 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        setupToolbar();
 
-        recyclerView = (RecyclerView) findViewById(R.id.movie_list);
-        assert recyclerView != null;
+        findRecyclerView();
+
+        checkIfInTwoPaneMode();
 
         setupPresenter();
 
         movieListPresenter.displayMovies();
+    }
 
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getTitle());
+    }
+
+    private void findRecyclerView() {
+        recyclerView = (RecyclerView) findViewById(R.id.movie_list);
+        assert recyclerView != null;
+    }
+
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movies));
+    }
+
+    private void setupPresenter() {
+        movieListPresenter = new MovieListPresenter(this, new StaticMovieListRepository());
+    }
+
+    private void checkIfInTwoPaneMode() {
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
@@ -64,14 +84,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
-    }
-
-    private void setupPresenter() {
-        movieListPresenter = new MovieListPresenter(this, new StaticMovieListRepository());
-    }
-
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movies));
     }
 
     @Override
