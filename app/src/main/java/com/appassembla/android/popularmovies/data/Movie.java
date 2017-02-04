@@ -11,6 +11,8 @@ public class Movie {
 
     private String movieName;
 
+    private String posterUrl;
+
     @NonNull
     public String getMovieName() {
         return movieName;
@@ -26,5 +28,14 @@ public class Movie {
 
     public void setMovieId(int movieId) {
         this.movieId = movieId;
+    }
+    
+    @NonNull
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(@NonNull String posterUrl) {
+        this.posterUrl = posterUrl;
     }
 }
