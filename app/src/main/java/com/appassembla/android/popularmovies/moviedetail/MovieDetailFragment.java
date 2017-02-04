@@ -43,7 +43,7 @@ public class MovieDetailFragment extends Fragment {
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             MovieListRepository movieListRepository = new StaticMovieListRepository();
-            mItem = movieListRepository.getMovies().get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
+            mItem = movieListRepository.getMovies().get(getArguments().getInt(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
