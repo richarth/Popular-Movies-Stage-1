@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailActivity;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailFragment;
 import com.appassembla.android.popularmovies.R;
-import com.appassembla.android.popularmovies.dummy.DummyContent;
 
 import java.util.List;
 
@@ -40,6 +39,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     private RecyclerView recyclerView;
 
+    private MovieListPresenter movieListPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         assert recyclerView != null;
-        setupRecyclerView(recyclerView);
+
+        setupPresenter();
+
+        movieListPresenter.displayMovies();
 
         if (findViewById(R.id.movie_detail_container) != null) {
             // The detail container view will be present only in the
@@ -62,13 +66,19 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         }
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+    private void setupPresenter() {
+        movieListPresenter = new MovieListPresenter(this, new StaticMovieListRepository());
+    }
+
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movies));
     }
 
     @Override
-    public void displayMoviesList(List<Movie> someMovies) {
+    public void displayMoviesList(List<Movie> movies) {
         recyclerView.setVisibility(View.VISIBLE);
+
+        setupRecyclerView(recyclerView, movies);
     }
 
     @Override
@@ -79,9 +89,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Movie> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<Movie> items) {
             mValues = items;
         }
 
@@ -95,15 +105,15 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(String.valueOf(mValues.get(position).getMovieId()));
+            holder.mContentView.setText(mValues.get(position).getMovieName());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getMovieId()));
                         MovieDetailFragment fragment = new MovieDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -112,7 +122,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, MovieDetailActivity.class);
-                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getMovieId());
 
                         context.startActivity(intent);
                     }
@@ -129,7 +139,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public Movie mItem;
 
             public ViewHolder(View view) {
                 super(view);
