@@ -22,7 +22,7 @@
         <activity
             android:name=".moviedetail.MovieDetailActivity"
             android:label="@string/title_movie_detail"
-            app:parentActivityName=".movielist.MovieListActivity"
+            android:parentActivityName=".movielist.MovieListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
