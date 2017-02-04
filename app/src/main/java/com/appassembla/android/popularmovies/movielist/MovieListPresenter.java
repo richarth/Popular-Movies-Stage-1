@@ -33,6 +33,6 @@ public class MovieListPresenter implements MovieListEvents {
     public void movieClicked(@NonNull int position) {
         Movie selectedMovie = movies.get(position);
 
-        movieListView.loadMovieDetail(selectedMovie);
+        movieListView.displayMovieDetail(selectedMovie);
     }
 }

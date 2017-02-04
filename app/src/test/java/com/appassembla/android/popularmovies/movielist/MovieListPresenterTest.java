@@ -61,6 +61,6 @@ public class MovieListPresenterTest {
 
         movieListPresenter.movieClicked(clickedPosition);
 
-        verify(movieListView).loadMovieDetail(clickedMovie);
+        verify(movieListView).displayMovieDetail(clickedMovie);
     }
 }

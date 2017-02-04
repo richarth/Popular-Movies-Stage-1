@@ -99,7 +99,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    public void loadMovieDetail(Movie movie) {
+    public void displayMovieDetail(Movie movie) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
