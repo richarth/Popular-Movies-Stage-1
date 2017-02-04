@@ -1,8 +1,8 @@
 package com.appassembla.android.popularmovies.movielist;
 
 import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.MovieListRepository;
-import com.appassembla.android.popularmovies.data.StaticMovieListRepository;
+import com.appassembla.android.popularmovies.data.MoviesRepository;
+import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,19 +25,19 @@ public class MovieListPresenterTest {
     @Mock
     private MovieListView movieListView;
     @Mock
-    private MovieListRepository movieListRepository;
+    private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMovieListRepository().getMovies();
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies();
 
     @Before
     public void setUp() throws Exception {
-        movieListPresenter = new MovieListPresenter(movieListView, movieListRepository);
+        movieListPresenter = new MovieListPresenter(movieListView, moviesRepository);
     }
 
     @Test
     public void shouldShowMoviesList() {
-        when(movieListRepository.getMovies()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies()).thenReturn(SOME_MOVIES);
 
         movieListPresenter.displayMovies();
 
@@ -46,7 +46,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(movieListRepository.getMovies()).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies()).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies();
 
@@ -55,16 +55,14 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(movieListRepository.getMovies()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies()).thenReturn(SOME_MOVIES);
 
         int clickedPosition = 1;
-
-        Movie clickedMovie = SOME_MOVIES.get(clickedPosition);
 
         movieListPresenter.displayMovies();
 
         movieListPresenter.movieClicked(clickedPosition);
 
-        verify(movieListView).displayMovieDetail(clickedMovie);
+        verify(movieListView).displayMovieDetail(clickedPosition);
     }
 }

@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 
 import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.StaticMovieListRepository;
-import com.appassembla.android.popularmovies.moviedetail.MovieDetailActivity;
-import com.appassembla.android.popularmovies.moviedetail.MovieDetailFragment;
+import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
+import com.appassembla.android.popularmovies.moviedetail.MovieDetailsActivity;
+import com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment;
 import com.appassembla.android.popularmovies.R;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import static android.view.View.*;
  * An activity representing a list of Movies. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link MovieDetailActivity} representing
+ * lead to a {@link MovieDetailsActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
@@ -82,7 +82,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     private void setupPresenter() {
-        movieListPresenter = new MovieListPresenter(this, new StaticMovieListRepository());
+        movieListPresenter = new MovieListPresenter(this, new StaticMoviesRepository());
     }
 
     private void checkIfInTwoPaneMode() {
@@ -113,15 +113,15 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     public void displayMovieDetail(int moviePositionInRepository) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
-            arguments.putInt(MovieDetailFragment.ARG_ITEM_ID, moviePositionInRepository);
-            MovieDetailFragment fragment = new MovieDetailFragment();
+            arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
+            MovieDetailsFragment fragment = new MovieDetailsFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.movie_detail_container, fragment)
                     .commit();
         } else {
-            Intent intent = new Intent(this, MovieDetailActivity.class);
-            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, moviePositionInRepository);
+            Intent intent = new Intent(this, MovieDetailsActivity.class);
+            intent.putExtra(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
 
             startActivity(intent);
         }

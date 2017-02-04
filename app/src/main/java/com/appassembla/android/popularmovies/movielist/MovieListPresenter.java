@@ -3,7 +3,7 @@ package com.appassembla.android.popularmovies.movielist;
 import android.support.annotation.NonNull;
 
 import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.MovieListRepository;
+import com.appassembla.android.popularmovies.data.MoviesRepository;
 
 import java.util.List;
 
@@ -14,16 +14,16 @@ import java.util.List;
 public class MovieListPresenter implements MovieListEvents {
 
     private final MovieListView movieListView;
-    private final MovieListRepository movieListRepository;
+    private final MoviesRepository moviesRepository;
     private List<Movie> movies;
 
-    public MovieListPresenter(@NonNull MovieListView movieListView, @NonNull MovieListRepository movieListRepository) {
+    public MovieListPresenter(@NonNull MovieListView movieListView, @NonNull MoviesRepository moviesRepository) {
         this.movieListView = movieListView;
-        this.movieListRepository = movieListRepository;
+        this.moviesRepository = moviesRepository;
     }
 
     public void displayMovies() {
-        movies = movieListRepository.getMovies();
+        movies = moviesRepository.getMovies();
 
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();

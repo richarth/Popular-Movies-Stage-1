@@ -29,7 +29,7 @@ public class Movie {
     public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
-    
+
     @NonNull
     public String getPosterUrl() {
         return posterUrl;

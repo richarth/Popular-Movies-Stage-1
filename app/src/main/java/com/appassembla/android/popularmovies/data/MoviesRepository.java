@@ -6,6 +6,8 @@ import java.util.List;
  * Created by Richard Thompson on 04/02/2017.
  */
 
-public interface MovieListRepository {
+public interface MoviesRepository {
     List<Movie> getMovies();
+
+    Movie getMovie(int movieId);
 }
