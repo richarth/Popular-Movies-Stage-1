@@ -49,15 +49,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         assert recyclerView != null;
         setupRecyclerView(recyclerView);
