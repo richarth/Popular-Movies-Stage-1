@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.appassembla.android.popularmovies">
 
     <application
@@ -21,7 +22,7 @@
         <activity
             android:name=".moviedetail.MovieDetailActivity"
             android:label="@string/title_movie_detail"
-            android:parentActivityName=".movielist.MovieListActivity"
+            app:parentActivityName=".movielist.MovieListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
