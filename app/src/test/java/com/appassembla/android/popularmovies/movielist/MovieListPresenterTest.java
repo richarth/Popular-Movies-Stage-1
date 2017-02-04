@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by richardthompson on 04/02/2017.
+ * Created by Richard Thompson on 04/02/2017.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class MovieListPresenterTest {
