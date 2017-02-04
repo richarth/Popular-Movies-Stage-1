@@ -3,18 +3,14 @@ package com.appassembla.android.popularmovies.movielist;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static java.util.Collections.*;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static java.util.Collections.EMPTY_LIST;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by richardthompson on 04/02/2017.
@@ -28,7 +24,7 @@ public class MovieListPresenterTest {
     private MovieListRepository movieListRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final List<Movie> SOME_MOVIES = Arrays.asList(new Movie(), new Movie(), new Movie());
+    private static final List<Movie> SOME_MOVIES = new StaticMovieListRepository().getMovies();
 
     @Before
     public void setUp() throws Exception {
@@ -51,5 +47,20 @@ public class MovieListPresenterTest {
         movieListPresenter.displayMovies();
 
         verify(movieListView).displayNoMoviesMessage();
+    }
+
+    @Test
+    public void shouldDisplaySelectedMovie() {
+        when(movieListRepository.getMovies()).thenReturn(SOME_MOVIES);
+
+        int clickedPosition = 1;
+
+        Movie clickedMovie = SOME_MOVIES.get(clickedPosition);
+
+        movieListPresenter.displayMovies();
+
+        movieListPresenter.movieClicked(clickedPosition);
+
+        verify(movieListView).loadMovieDetail(clickedMovie);
     }
 }

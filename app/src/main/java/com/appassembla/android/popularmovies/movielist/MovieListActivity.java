@@ -86,6 +86,24 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         recyclerView.setVisibility(View.GONE);
     }
 
+    @Override
+    public void loadMovieDetail(Movie movie) {
+        if (mTwoPane) {
+            Bundle arguments = new Bundle();
+            arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
+            MovieDetailFragment fragment = new MovieDetailFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.movie_detail_container, fragment)
+                    .commit();
+        } else {
+            Intent intent = new Intent(this, MovieDetailActivity.class);
+            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, movie.getMovieId());
+
+            startActivity(intent);
+        }
+    }
+
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
@@ -103,7 +121,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(String.valueOf(mValues.get(position).getMovieId()));
             holder.mContentView.setText(mValues.get(position).getMovieName());
@@ -111,21 +129,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getMovieId()));
-                        MovieDetailFragment fragment = new MovieDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.movie_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, MovieDetailActivity.class);
-                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getMovieId());
-
-                        context.startActivity(intent);
-                    }
+                    movieListPresenter.movieClicked(position);
                 }
             });
         }
