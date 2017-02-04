@@ -138,7 +138,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    movieListPresenter.movieClicked(position);
+                    movieListPresenter.movieClicked(holder.getAdapterPosition());
                 }
             });
         }
