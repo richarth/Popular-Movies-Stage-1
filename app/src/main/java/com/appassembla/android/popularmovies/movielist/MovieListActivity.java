@@ -107,10 +107,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    public void displayMovieDetail(@NonNull Movie movie) {
+    public void displayMovieDetail(int moviePositionInRepository) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
-            arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
+            arguments.putString(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(moviePositionInRepository));
             MovieDetailFragment fragment = new MovieDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -118,7 +118,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
                     .commit();
         } else {
             Intent intent = new Intent(this, MovieDetailActivity.class);
-            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
+            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(moviePositionInRepository));
 
             startActivity(intent);
         }

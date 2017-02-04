@@ -9,5 +9,5 @@ import java.util.List;
 interface MovieListView {
     void displayMoviesList(List<Movie> moviesList);
     void displayNoMoviesMessage();
-    void displayMovieDetail(Movie movie);
+    void displayMovieDetail(int moviePosition);
 }
