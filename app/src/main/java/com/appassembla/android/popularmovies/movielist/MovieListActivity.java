@@ -118,7 +118,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
                     .commit();
         } else {
             Intent intent = new Intent(this, MovieDetailActivity.class);
-            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, movie.getMovieId());
+            intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, String.valueOf(movie.getMovieId()));
 
             startActivity(intent);
         }
@@ -149,6 +149,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             holder.mView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int adaptPos = holder.getAdapterPosition();
                     movieListPresenter.movieClicked(holder.getAdapterPosition());
                 }
             });

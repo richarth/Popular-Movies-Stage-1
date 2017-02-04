@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.movielist.Movie;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
+import com.appassembla.android.popularmovies.movielist.MovieListRepository;
+import com.appassembla.android.popularmovies.movielist.StaticMovieListRepository;
 
 /**
  * A fragment representing a single Movie detail screen.
@@ -40,11 +42,8 @@ public class MovieDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = new Movie();
-            //mItem = DC.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            MovieListRepository movieListRepository = new StaticMovieListRepository();
+            mItem = movieListRepository.getMovies().get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
