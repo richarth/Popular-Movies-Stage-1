@@ -30,13 +30,15 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class MovieListActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity implements MovieListView {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MovieListActivity extends AppCompatActivity {
             }
         });
 
-        View recyclerView = findViewById(R.id.movie_list);
+        recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
@@ -71,6 +73,16 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+    }
+
+    @Override
+    public void displayMoviesList(List<Movie> someMovies) {
+        recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void displayNoMoviesMessage() {
+        recyclerView.setVisibility(View.GONE);
     }
 
     public class SimpleItemRecyclerViewAdapter
