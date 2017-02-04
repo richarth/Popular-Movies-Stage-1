@@ -3,6 +3,7 @@ package com.appassembla.android.popularmovies.movielist;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**

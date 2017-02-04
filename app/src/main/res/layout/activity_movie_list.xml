@@ -28,6 +28,14 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <include layout="@layout/movie_list" />
+
+        <TextView
+            android:id="@+id/no_movies_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_movies_found"
+            android:layout_gravity="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
     </FrameLayout>
 
 

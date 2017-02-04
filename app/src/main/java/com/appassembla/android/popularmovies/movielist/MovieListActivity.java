@@ -18,6 +18,8 @@ import com.appassembla.android.popularmovies.R;
 
 import java.util.List;
 
+import static android.view.View.*;
+
 /**
  * An activity representing a list of Movies. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -37,6 +39,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     private RecyclerView recyclerView;
 
     private MovieListPresenter movieListPresenter;
+    private TextView noMoviesTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         setupToolbar();
 
         findRecyclerView();
+
+        findNoMoviesMessage();
 
         checkIfInTwoPaneMode();
 
@@ -63,6 +68,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     private void findRecyclerView() {
         recyclerView = (RecyclerView) findViewById(R.id.movie_list);
         assert recyclerView != null;
+    }
+
+    private void findNoMoviesMessage() {
+        noMoviesTextView = (TextView) findViewById(R.id.no_movies_message);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
@@ -85,14 +94,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @Override
     public void displayMoviesList(@NonNull List<Movie> movies) {
-        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(VISIBLE);
+        noMoviesTextView.setVisibility(INVISIBLE);
 
         setupRecyclerView(recyclerView, movies);
     }
 
     @Override
     public void displayNoMoviesMessage() {
-        recyclerView.setVisibility(View.GONE);
+        recyclerView.setVisibility(INVISIBLE);
+        noMoviesTextView.setVisibility(VISIBLE);
     }
 
     @Override
@@ -135,7 +146,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             holder.mIdView.setText(String.valueOf(mValues.get(position).getMovieId()));
             holder.mContentView.setText(mValues.get(position).getMovieName());
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.mView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     movieListPresenter.movieClicked(holder.getAdapterPosition());
