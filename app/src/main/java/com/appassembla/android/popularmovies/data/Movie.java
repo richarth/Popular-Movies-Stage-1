@@ -1,4 +1,4 @@
-package com.appassembla.android.popularmovies.movielist;
+package com.appassembla.android.popularmovies.data;
 
 import android.support.annotation.NonNull;
 

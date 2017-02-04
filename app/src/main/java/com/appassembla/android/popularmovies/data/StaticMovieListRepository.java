@@ -1,9 +1,11 @@
-package com.appassembla.android.popularmovies.movielist;
+package com.appassembla.android.popularmovies.data;
 
 import android.support.annotation.NonNull;
 
+import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.MovieListRepository;
+
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

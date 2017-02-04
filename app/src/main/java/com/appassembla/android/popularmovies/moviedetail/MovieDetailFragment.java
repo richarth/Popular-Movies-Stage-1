@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appassembla.android.popularmovies.R;
-import com.appassembla.android.popularmovies.movielist.Movie;
+import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
-import com.appassembla.android.popularmovies.movielist.MovieListRepository;
-import com.appassembla.android.popularmovies.movielist.StaticMovieListRepository;
+import com.appassembla.android.popularmovies.data.MovieListRepository;
+import com.appassembla.android.popularmovies.data.StaticMovieListRepository;
 
 /**
  * A fragment representing a single Movie detail screen.
