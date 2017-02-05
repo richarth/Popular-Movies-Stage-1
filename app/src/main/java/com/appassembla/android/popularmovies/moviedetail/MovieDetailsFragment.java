@@ -79,8 +79,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
     @Override
     public void displayMovieDetails(@NonNull Movie selectedMovie) {
-        setToolbarTitle(selectedMovie.movieName());
+        setToolbarTitle(selectedMovie.name());
 
-        movieTitleTextView.setText(selectedMovie.movieName());
+        movieTitleTextView.setText(selectedMovie.name());
     }
 }

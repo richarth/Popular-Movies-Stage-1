@@ -12,14 +12,14 @@ import java.util.Date;
 
 @AutoValue
 public abstract class Movie {
-    public abstract int movieId();
-    public abstract String movieName();
+    public abstract int id();
+    public abstract String name();
     public abstract String posterUrl();
     public abstract String plotSynopsis();
     public abstract float averageRating();
     public abstract Date releaseDate();
 
-    public static Movie create(int movieId, String movieName, String posterUrl, String plotSynopsis, float averageRating, Date releaseDate) {
-        return new AutoValue_Movie(movieId, movieName, posterUrl, plotSynopsis, averageRating, releaseDate);
+    public static Movie create(int id, String name, String posterUrl, String plotSynopsis, float averageRating, Date releaseDate) {
+        return new AutoValue_Movie(id, name, posterUrl, plotSynopsis, averageRating, releaseDate);
     }
 }
