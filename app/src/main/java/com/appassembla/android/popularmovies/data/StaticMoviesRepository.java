@@ -14,17 +14,11 @@ public class StaticMoviesRepository implements MoviesRepository {
     private List<Movie> movies;
 
     public StaticMoviesRepository() {
-        Movie movie1 = new Movie();
-        movie1.setMovieId(1);
-        movie1.setMovieName("Movie 1");
+        Movie movie1 = Movie.create(1, "Movie 1", "");
 
-        Movie movie2 = new Movie();
-        movie2.setMovieId(2);
-        movie2.setMovieName("Movie 2");
+        Movie movie2 = Movie.create(2, "Movie 2", "");
 
-        Movie movie3 = new Movie();
-        movie3.setMovieId(3);
-        movie3.setMovieName("Movie 3");
+        Movie movie3 = Movie.create(3, "Movie 3", "");
 
         movies = Arrays.asList(movie1, movie2, movie3);
     }

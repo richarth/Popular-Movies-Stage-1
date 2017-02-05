@@ -2,40 +2,19 @@ package com.appassembla.android.popularmovies.data;
 
 import android.support.annotation.NonNull;
 
+import com.google.auto.value.AutoValue;
+
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
 
-public class Movie {
-    private int movieId;
+@AutoValue
+public abstract class Movie {
+    public abstract int movieId();
+    public abstract String movieName();
+    public abstract String posterUrl();
 
-    private String movieName;
-
-    private String posterUrl;
-
-    @NonNull
-    public String getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(@NonNull String movieName) {
-        this.movieName = movieName;
-    }
-
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
-    @NonNull
-    public String getPosterUrl() {
-        return posterUrl;
-    }
-
-    public void setPosterUrl(@NonNull String posterUrl) {
-        this.posterUrl = posterUrl;
+    public static Movie create(int movieId, String movieName, String posterUrl) {
+        return new AutoValue_Movie(movieId, movieName, posterUrl);
     }
 }

@@ -146,7 +146,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.posterView.setImageDrawable(getDrawable(R.mipmap.ic_launcher));
-            holder.posterView.setContentDescription(mValues.get(position).getMovieName());
+            holder.posterView.setContentDescription(mValues.get(position).movieName());
 
             holder.mView.setOnClickListener(new OnClickListener() {
                 @Override
