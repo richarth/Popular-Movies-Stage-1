@@ -21,7 +21,7 @@ class MovieDetailsPresenter {
     }
 
     public void displayMovie() {
-        Movie selectedMovie = moviesRepository.getMovie(selectedMovieId);
+        Movie selectedMovie = moviesRepository.getMovieById(selectedMovieId);
 
         movieDetailsView.displayMovieDetails(selectedMovie);
     }

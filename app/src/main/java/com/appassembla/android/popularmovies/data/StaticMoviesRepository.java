@@ -31,7 +31,7 @@ public class StaticMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public Movie getMovie(final int movieId) {
+    public Movie getMovieById(final int movieId) {
 
         Movie selectedMovie = null;
 

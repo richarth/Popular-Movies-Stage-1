@@ -23,14 +23,14 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetMovieWithId7() throws Exception {
         Movie testMovie = Movie.create(7, "Movie 7", "", "", 0, new Date());
 
-        Movie selectedMovie = moviesRepository.getMovie(7);
+        Movie selectedMovie = moviesRepository.getMovieById(7);
 
         assertEquals(testMovie, selectedMovie);
     }
 
     @Test
     public void shouldGetNoMovieWhenIdDoesntExist() throws Exception {
-        Movie selectedMovie = moviesRepository.getMovie(56);
+        Movie selectedMovie = moviesRepository.getMovieById(56);
 
         assertNull(selectedMovie);
     }

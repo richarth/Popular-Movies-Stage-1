@@ -38,7 +38,7 @@ public class MovieDetailsPresenterTest {
 
     @Test
     public void shouldShowMovieDetail() {
-        when(moviesRepository.getMovie(clickedPosition)).thenReturn(SOME_MOVIES.get(clickedPosition));
+        when(moviesRepository.getMovieById(clickedPosition)).thenReturn(SOME_MOVIES.get(clickedPosition));
 
         movieDetailsPresenter.displayMovie();
 
