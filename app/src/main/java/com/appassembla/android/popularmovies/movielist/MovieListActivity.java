@@ -148,12 +148,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             holder.posterView.setImageDrawable(getDrawable(R.mipmap.ic_launcher));
             holder.posterView.setContentDescription(mValues.get(position).name());
 
-            holder.mView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    movieListPresenter.movieClicked(holder.getAdapterPosition());
-                }
-            });
+            holder.mView.setOnClickListener(v -> movieListPresenter.movieClicked(holder.getAdapterPosition()));
         }
 
         @Override
