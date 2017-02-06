@@ -61,7 +61,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         // using a fragment transaction.
         Bundle arguments = new Bundle();
         arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID,
-                getIntent().getIntExtra(MovieDetailsFragment.ARG_ITEM_ID, 1));
+                getIntent().getIntExtra(MovieDetailsFragment.ARG_ITEM_ID, 0));
         MovieDetailsFragment fragment = new MovieDetailsFragment();
         fragment.setArguments(arguments);
         getSupportFragmentManager().beginTransaction()

@@ -25,23 +25,32 @@ public class MovieDetailsPresenterTest {
     @Mock
     private MoviesRepository moviesRepository;
     private MovieDetailsPresenter movieDetailsPresenter;
-    private int clickedPosition;
+    private int movieId;
 
     private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies();
 
     @Before
     public void setUp() throws Exception {
-        clickedPosition = 2;
+        movieId = 7;
 
-        movieDetailsPresenter = new MovieDetailsPresenter(movieDetailsView, moviesRepository, clickedPosition);
+        movieDetailsPresenter = new MovieDetailsPresenter(movieDetailsView, moviesRepository, movieId);
     }
 
     @Test
     public void shouldShowMovieDetail() {
-        when(moviesRepository.getMovieById(clickedPosition)).thenReturn(SOME_MOVIES.get(clickedPosition));
+        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(movieId));
 
         movieDetailsPresenter.displayMovie();
 
-        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(clickedPosition));
+        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(movieId));
+    }
+
+    @Test
+    public void shouldShowNoMovieDetails() {
+        when(moviesRepository.getMovieById(1000000)).thenReturn(null);
+
+        movieDetailsPresenter.displayMovie();
+
+        verify(movieDetailsView).displayMovieDetails(null);
     }
 }
