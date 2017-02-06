@@ -1,13 +1,17 @@
 package com.appassembla.android.popularmovies.moviedetail;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appassembla.android.popularmovies.R;
@@ -31,6 +35,10 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     private MovieDetailsPresenter movieDetailsPresenter;
 
     private TextView movieTitleTextView;
+    private ImageView posterImageView;
+    private TextView releaseDateTextView;
+    private TextView averageRatingTextView;
+    private TextView synopsisTextView;
 
     public MovieDetailsFragment() {
     }
@@ -49,8 +57,11 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movie_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
         movieTitleTextView = (TextView) rootView.findViewById(R.id.movie_detail);
+        posterImageView = (ImageView) rootView.findViewById(R.id.detail_poster_image_view);
+        releaseDateTextView = (TextView) rootView.findViewById(R.id.release_date_text_view);
+        averageRatingTextView = (TextView) rootView.findViewById(R.id.user_rating_text_view);
+        synopsisTextView = (TextView) rootView.findViewById(R.id.plot_synopsis_text_view);
 
         return rootView;
     }
@@ -81,5 +92,15 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         setToolbarTitle(selectedMovie.name());
 
         movieTitleTextView.setText(selectedMovie.name());
+
+        Drawable posterImage = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_launcher, null);
+        posterImageView.setImageDrawable(posterImage);
+
+        releaseDateTextView.setText(selectedMovie.releaseDate().toString());
+
+        String averageRating = Float.toString(selectedMovie.averageRating());
+        averageRatingTextView.setText(averageRating);
+
+        synopsisTextView.setText(selectedMovie.plotSynopsis());
     }
 }
