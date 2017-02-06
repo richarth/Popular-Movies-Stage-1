@@ -64,7 +64,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         }
     }
 
-    public void setToolbarTitle(String movieName) {
+    private void setToolbarTitle(String movieName) {
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {

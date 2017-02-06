@@ -9,7 +9,7 @@ import com.appassembla.android.popularmovies.data.MoviesRepository;
  * Created by Richard Thompson on 04/02/2017.
  */
 
-public class MovieDetailsPresenter {
+class MovieDetailsPresenter {
     private final MovieDetailsView movieDetailsView;
     private final MoviesRepository moviesRepository;
     private final int selectedMovieId;

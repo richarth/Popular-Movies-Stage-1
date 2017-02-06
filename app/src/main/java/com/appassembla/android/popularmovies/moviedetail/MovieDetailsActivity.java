@@ -56,7 +56,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         }
     }
 
-    public void addMovieDetailsFragment() {
+    private void addMovieDetailsFragment() {
         // Create the detail fragment and add it to the activity
         // using a fragment transaction.
         Bundle arguments = new Bundle();
