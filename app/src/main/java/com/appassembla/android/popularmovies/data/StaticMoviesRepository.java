@@ -31,8 +31,16 @@ public class StaticMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    @NonNull
-    public Movie getMovie(int movieId) {
-        return movies.get(movieId);
+    public Movie getMovie(final int movieId) {
+
+        return movies.stream().filter(m -> m.id() == movieId).findFirst().get();
+
+        /*if (movies.contains(new Movie()) {
+            return movies.get(movies.indexOf())
+        }
+
+        if movie id not found return null
+
+        return movies.get(movieId);*/
     }
 }
