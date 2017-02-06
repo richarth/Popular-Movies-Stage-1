@@ -15,13 +15,13 @@ public class StaticMoviesRepository implements MoviesRepository {
     private final List<Movie> movies;
 
     public StaticMoviesRepository() {
-        Movie movie4 = Movie.create(4, "Movie 4", "", "", 0, new Date());
-
         Movie movie7 = Movie.create(7, "Movie 7", "", "", 0, new Date());
+
+        Movie movie4 = Movie.create(4, "Movie 4", "", "", 0, new Date());
 
         Movie movie8 = Movie.create(8, "Movie 8", "", "", 0, new Date());
 
-        movies = Arrays.asList(movie4, movie7, movie8);
+        movies = Arrays.asList(movie7, movie4, movie8);
     }
 
     @Override
