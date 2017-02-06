@@ -16,15 +16,13 @@ public class MovieListPresenter implements MovieListEvents {
     private final MovieListView movieListView;
     private final MoviesRepository moviesRepository;
 
-    private List<Movie> movies;
-
     public MovieListPresenter(@NonNull MovieListView movieListView, @NonNull MoviesRepository moviesRepository) {
         this.movieListView = movieListView;
         this.moviesRepository = moviesRepository;
     }
 
     public void displayMovies() {
-        movies = moviesRepository.getMovies();
+        List<Movie> movies = moviesRepository.getMovies();
 
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();
