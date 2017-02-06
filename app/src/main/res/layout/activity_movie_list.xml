@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="@string/no_movies_found"
             android:layout_gravity="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+            style="?android:attr/textAppearanceLarge" />
     </FrameLayout>
 
 
