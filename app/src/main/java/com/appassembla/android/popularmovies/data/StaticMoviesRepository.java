@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StaticMoviesRepository implements MoviesRepository {
 
-    private List<Movie> movies;
+    private final List<Movie> movies;
 
     public StaticMoviesRepository() {
         Movie movie4 = Movie.create(4, "Movie 4", "", "", 0, new Date());
