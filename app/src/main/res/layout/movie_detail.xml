@@ -1,9 +1,49 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movie_detail"
-    style="?android:attr/textAppearanceLarge"
-    android:layout_width="match_parent"
+    tools:context="com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment" />
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="?android:attr/textAppearanceLarge"
+        android:id="@+id/movie_detail"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:textIsSelectable="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_poster_image_view"
+        android:layout_gravity="center" />
+
+    <TextView
+        style="?android:attr/textAppearanceMedium"
+        android:id="@+id/release_date_text_view"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        android:layout_gravity="center" />
+
+    <TextView
+        style="?android:attr/textAppearanceMedium"
+        android:id="@+id/user_rating_text_view"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        android:layout_gravity="center" />
+
+    <TextView
+        style="?android:attr/textAppearanceMedium"
+        android:id="@+id/plot_synopsis_text_view"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        android:layout_gravity="center" />
+
+</LinearLayout>
