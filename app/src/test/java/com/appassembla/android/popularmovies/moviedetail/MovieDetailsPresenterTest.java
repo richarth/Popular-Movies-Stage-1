@@ -38,17 +38,15 @@ public class MovieDetailsPresenterTest {
 
     @Test
     public void shouldShowMovieDetail() {
-        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(movieId));
+        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(0));
 
         movieDetailsPresenter.displayMovie();
 
-        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(movieId));
+        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(0));
     }
 
     @Test
     public void shouldShowNoMovieDetails() {
-        when(moviesRepository.getMovieById(1000000)).thenReturn(null);
-
         movieDetailsPresenter.displayMovie();
 
         verify(movieDetailsView).displayMovieDetails(null);
