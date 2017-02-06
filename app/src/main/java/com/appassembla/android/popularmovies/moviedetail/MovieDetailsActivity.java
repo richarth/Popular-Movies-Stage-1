@@ -2,7 +2,6 @@ package com.appassembla.android.popularmovies.moviedetail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
@@ -10,8 +9,6 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import com.appassembla.android.popularmovies.R;
-import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 
 /**

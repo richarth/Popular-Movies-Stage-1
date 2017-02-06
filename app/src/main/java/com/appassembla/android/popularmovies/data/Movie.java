@@ -1,7 +1,5 @@
 package com.appassembla.android.popularmovies.data;
 
-import android.support.annotation.NonNull;
-
 import com.google.auto.value.AutoValue;
 
 import java.util.Date;

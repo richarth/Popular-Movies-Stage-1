@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
-import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 
 /**
