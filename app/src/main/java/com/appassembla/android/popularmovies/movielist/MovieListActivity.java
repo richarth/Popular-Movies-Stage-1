@@ -18,6 +18,7 @@ import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsActivity;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment;
 import com.appassembla.android.popularmovies.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -145,7 +146,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            holder.posterView.setImageDrawable(getDrawable(R.mipmap.ic_launcher));
+            Picasso.with(getApplication()).load(mValues.get(position).posterUrl()).into(holder.posterView);
             holder.posterView.setContentDescription(mValues.get(position).name());
 
             holder.mView.setOnClickListener(v -> movieListPresenter.movieClicked(mValues.get(holder.getAdapterPosition()).id()));

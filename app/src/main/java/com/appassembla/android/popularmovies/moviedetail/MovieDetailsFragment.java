@@ -18,6 +18,7 @@ import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
+import com.squareup.picasso.Picasso;
 
 /**
  * A fragment representing a single Movie detail screen.
@@ -93,8 +94,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         movieTitleTextView.setText(selectedMovie.name());
 
-        Drawable posterImage = ResourcesCompat.getDrawable(getResources(), R.mipmap.ic_launcher, null);
-        posterImageView.setImageDrawable(posterImage);
+        Picasso.with(getActivity()).load(selectedMovie.posterUrl()).into(posterImageView);
 
         releaseDateTextView.setText(selectedMovie.releaseDate().toString());
 
