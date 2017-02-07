@@ -21,7 +21,7 @@ public class StaticMoviesRepositoryTest {
 
     @Test
     public void shouldGetMovieWithId7() throws Exception {
-        Movie testMovie = Movie.create(7, "Movie 7", "", "Movie 7 is about Jedi", 0, new Date());
+        Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, new Date());
 
         Movie selectedMovie = moviesRepository.getMovieById(7);
 
