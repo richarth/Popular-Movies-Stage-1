@@ -1,5 +1,7 @@
 package com.appassembla.android.popularmovies.data;
 
+import android.support.annotation.NonNull;
+
 import com.google.auto.value.AutoValue;
 
 import java.util.Date;
@@ -17,7 +19,7 @@ public abstract class Movie {
     public abstract float averageRating();
     public abstract Date releaseDate();
 
-    public static Movie create(int id, String name, String posterUrl, String plotSynopsis, float averageRating, Date releaseDate) {
+    public static Movie create(int id, @NonNull String name, @NonNull String posterUrl, @NonNull String plotSynopsis, float averageRating, @NonNull Date releaseDate) {
         return new AutoValue_Movie(id, name, posterUrl, plotSynopsis, averageRating, releaseDate);
     }
 }
