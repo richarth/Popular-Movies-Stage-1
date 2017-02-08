@@ -22,7 +22,7 @@ public class MovieListPresenter implements MovieListEvents {
     }
 
     public void displayMovies() {
-        List<Movie> movies = moviesRepository.getMovies();
+        List<Movie> movies = moviesRepository.getMovies(1);
 
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();

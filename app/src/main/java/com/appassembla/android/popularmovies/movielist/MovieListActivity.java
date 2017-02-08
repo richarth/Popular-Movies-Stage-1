@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
+import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsActivity;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment;
 import com.appassembla.android.popularmovies.R;
@@ -83,7 +84,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     private void setupPresenter() {
-        movieListPresenter = new MovieListPresenter(this, new StaticMoviesRepository());
+        movieListPresenter = new MovieListPresenter(this, new WebMoviesRepository());
     }
 
     private void checkIfInTwoPaneMode() {

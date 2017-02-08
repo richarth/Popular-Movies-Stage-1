@@ -27,7 +27,9 @@ public class MovieDetailsPresenterTest {
     private MovieDetailsPresenter movieDetailsPresenter;
     private int movieId;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies();
+    private static final int MOVIE_SORT_TYPE = 0;
+
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
     @Before
     public void setUp() throws Exception {

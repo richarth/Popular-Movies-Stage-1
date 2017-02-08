@@ -7,7 +7,10 @@ import java.util.List;
  */
 
 public interface MoviesRepository {
-    List<Movie> getMovies();
+    public static final int POPULAR_SORT_TYPE = 1;
+    public static final int TOP_RATED_SORT_TYPE = 2;
+
+    List<Movie> getMovies(int sortType);
 
     Movie getMovieById(int movieId);
 }

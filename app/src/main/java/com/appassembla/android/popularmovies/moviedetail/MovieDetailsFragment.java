@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 import com.squareup.picasso.Picasso;
@@ -85,7 +86,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     }
 
     private void setupPresenter(int selectedMovieId) {
-        movieDetailsPresenter = new MovieDetailsPresenter(this, new StaticMoviesRepository(), selectedMovieId);
+        movieDetailsPresenter = new MovieDetailsPresenter(this, new WebMoviesRepository(), selectedMovieId);
     }
 
     @Override
@@ -98,7 +99,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         releaseDateTextView.setText(selectedMovie.releaseDate().toString());
 
-        String averageRating = Float.toString(selectedMovie.averageRating());
+        String averageRating = Double.toString(selectedMovie.averageRating());
         averageRatingTextView.setText(averageRating);
 
         synopsisTextView.setText(selectedMovie.plotSynopsis());

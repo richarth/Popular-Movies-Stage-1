@@ -28,7 +28,9 @@ public class MovieListPresenterTest {
     private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies();
+    private static final int MOVIE_SORT_TYPE = 0;
+
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
     @Before
     public void setUp() throws Exception {
@@ -37,7 +39,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowMoviesList() {
-        when(moviesRepository.getMovies()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
         movieListPresenter.displayMovies();
 
@@ -46,7 +48,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(moviesRepository.getMovies()).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies();
 
@@ -55,7 +57,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(moviesRepository.getMovies()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
         int clickedPosition = 1;
 
