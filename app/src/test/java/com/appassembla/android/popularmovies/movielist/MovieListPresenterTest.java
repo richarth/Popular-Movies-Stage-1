@@ -28,7 +28,7 @@ public class MovieListPresenterTest {
     private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final int MOVIE_SORT_TYPE = 0;
+    private static final int MOVIE_SORT_TYPE = 1;
 
     private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
