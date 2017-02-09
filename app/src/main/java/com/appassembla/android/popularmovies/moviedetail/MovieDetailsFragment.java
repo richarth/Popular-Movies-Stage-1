@@ -93,7 +93,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         Picasso.with(getActivity()).load(selectedMovie.posterUrl()).into(posterImageView);
 
-        releaseDateTextView.setText(selectedMovie.releaseDate().toString());
+        releaseDateTextView.setText(selectedMovie.releaseDate());
 
         String averageRating = Double.toString(selectedMovie.averageRating());
         averageRatingTextView.setText(averageRating);
