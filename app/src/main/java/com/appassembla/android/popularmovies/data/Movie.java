@@ -7,8 +7,6 @@ import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
-import java.util.Date;
-
 /**
  * Created by Richard Thompson on 04/02/2017.
  */

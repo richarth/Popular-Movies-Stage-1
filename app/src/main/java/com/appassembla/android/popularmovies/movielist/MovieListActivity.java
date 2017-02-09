@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 
 import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsActivity;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment;

@@ -3,7 +3,6 @@ package com.appassembla.android.popularmovies.data;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,13 +1,10 @@
 package com.appassembla.android.popularmovies.moviedetail;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +15,6 @@ import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
-import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 import com.squareup.picasso.Picasso;
 
 /**
