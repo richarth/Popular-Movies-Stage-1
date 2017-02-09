@@ -50,7 +50,7 @@ public class WebMoviesRepository implements MoviesRepository {
             if (sortType == MoviesRepository.POPULAR_SORT_TYPE) {
                 getMoviesCall = movieDBService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY);
             } else if (sortType == MoviesRepository.TOP_RATED_SORT_TYPE) {
-                getMoviesCall = movieDBService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY);
+                getMoviesCall = movieDBService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY);
             }
 
             if (getMoviesCall != null) {
