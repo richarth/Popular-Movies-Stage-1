@@ -3,6 +3,7 @@ package com.appassembla.android.popularmovies.data;
 import android.util.Log;
 
 import com.appassembla.android.popularmovies.BuildConfig;
+import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -26,9 +27,13 @@ public class WebMoviesRepository implements MoviesRepository {
     private static final String TAG = "WebMoviesRepository";
 
     public WebMoviesRepository() {
+        Moshi moshi = new Moshi.Builder()
+                .add(MovieAdapterFactory.create())
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.themoviedb.org/")
-                .addConverterFactory(MoshiConverterFactory.create())
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build();
 
         movieDBService = retrofit.create(MovieDBService.class);
