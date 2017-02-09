@@ -7,8 +7,8 @@ import java.util.List;
  */
 
 public interface MoviesRepository {
-    public static final int POPULAR_SORT_TYPE = 1;
-    public static final int TOP_RATED_SORT_TYPE = 2;
+    int POPULAR_SORT_TYPE = 1;
+    int TOP_RATED_SORT_TYPE = 2;
 
     List<Movie> getMovies(int sortType);
 
