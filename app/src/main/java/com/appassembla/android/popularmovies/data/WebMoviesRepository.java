@@ -61,7 +61,7 @@ public class WebMoviesRepository implements MoviesRepository {
     @Override
     public Movie getMovieById(int movieId) {
 
-        Movie selectedMovie = Movie.create(0, "", "", "", 0, new Date());
+        Movie selectedMovie = Movie.create(0, "", "", "", 0, "");
 
         try {
             Call<Movie> getMovieDetailsCall = movieDBService.getMovieDetails(movieId, BuildConfig.MOVIE_DB_API_KEY);

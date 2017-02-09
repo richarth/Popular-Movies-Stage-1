@@ -25,9 +25,9 @@ public abstract class Movie {
     @Json(name = "vote_average")
     public abstract double averageRating();
     @Json(name = "release_date")
-    public abstract Date releaseDate();
+    public abstract String releaseDate();
 
-    public static Movie create(int id, @NonNull String name, @NonNull String posterUrl, @NonNull String plotSynopsis, double averageRating, @NonNull Date releaseDate) {
+    public static Movie create(int id, @NonNull String name, @NonNull String posterUrl, @NonNull String plotSynopsis, double averageRating, @NonNull String releaseDate) {
         return new AutoValue_Movie(id, name, posterUrl, plotSynopsis, averageRating, releaseDate);
     }
 
