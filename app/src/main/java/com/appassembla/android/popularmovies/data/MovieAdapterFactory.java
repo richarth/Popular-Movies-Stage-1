@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonAdapter;
  */
 
 @MoshiAdapterFactory
-public abstract class MovieAdapterFactory implements JsonAdapter.Factory {
+abstract class MovieAdapterFactory implements JsonAdapter.Factory {
     public static JsonAdapter.Factory create() {
         return new AutoValueMoshi_MovieAdapterFactory();
     }
