@@ -22,7 +22,7 @@ import retrofit2.http.Query;
 
 public class WebMoviesRepository implements MoviesRepository {
 
-    private MovieDBService movieDBService;
+    private final MovieDBService movieDBService;
 
     private static final String TAG = "WebMoviesRepository";
 
