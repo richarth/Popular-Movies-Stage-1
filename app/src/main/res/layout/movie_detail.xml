@@ -11,13 +11,15 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:padding="16dp"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        tools:text="Star Wars" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/detail_poster_image_view"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        tools:src="@mipmap/ic_launcher"/>
 
     <TextView
         style="?android:attr/textAppearanceMedium"
@@ -26,7 +28,8 @@
         android:layout_width="wrap_content"
         android:padding="16dp"
         android:textIsSelectable="true"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        tools:text="1991" />
 
     <TextView
         style="?android:attr/textAppearanceMedium"
@@ -35,7 +38,8 @@
         android:layout_width="wrap_content"
         android:padding="16dp"
         android:textIsSelectable="true"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        tools:text="5.8" />
 
     <TextView
         style="?android:attr/textAppearanceMedium"
@@ -44,6 +48,7 @@
         android:layout_width="wrap_content"
         android:padding="16dp"
         android:textIsSelectable="true"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        tools:text="This is a movie about making an Android app..." />
 
 </LinearLayout>

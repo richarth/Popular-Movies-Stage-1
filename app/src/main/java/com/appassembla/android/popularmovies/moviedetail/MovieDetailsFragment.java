@@ -91,7 +91,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         movieTitleTextView.setText(selectedMovie.name());
 
-        Picasso.with(getActivity()).load(selectedMovie.posterUrl()).into(posterImageView);
+        Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
 
         releaseDateTextView.setText(selectedMovie.releaseDate());
 

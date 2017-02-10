@@ -146,7 +146,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            Picasso.with(getApplication()).load(mValues.get(position).posterUrl()).into(holder.posterView);
+            Picasso.with(getApplication()).load(Movie.posterImgBaseUrl + mValues.get(position).posterUrl()).into(holder.posterView);
             holder.posterView.setContentDescription(mValues.get(position).name());
 
             holder.mView.setOnClickListener(v -> movieListPresenter.movieClicked(mValues.get(holder.getAdapterPosition()).id()));

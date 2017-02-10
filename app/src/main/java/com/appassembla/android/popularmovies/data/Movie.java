@@ -25,6 +25,8 @@ public abstract class Movie {
     @Json(name = "release_date")
     public abstract String releaseDate();
 
+    public static final String posterImgBaseUrl = "http://image.tmdb.org/t/p/w185";
+
     public static Movie create(int id, @NonNull String name, @NonNull String posterUrl, @NonNull String plotSynopsis, double averageRating, @NonNull String releaseDate) {
         return new AutoValue_Movie(id, name, posterUrl, plotSynopsis, averageRating, releaseDate);
     }
