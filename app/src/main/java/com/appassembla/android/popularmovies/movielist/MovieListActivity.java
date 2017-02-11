@@ -2,6 +2,7 @@ package com.appassembla.android.popularmovies.movielist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     private MovieListPresenter movieListPresenter;
     private TextView noMoviesTextView;
 
+    private static final String SCROLL_POSITION_KEY = "scrollPosition";
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private static Bundle mBundleRecyclerViewState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,14 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         setupPresenter();
 
         movieListPresenter.displayMovies();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        restoreRecyclerViewState();
     }
 
     private void setupToolbar() {
@@ -126,6 +139,28 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
             startActivity(intent);
         }
+    }
+
+    private void restoreRecyclerViewState() {
+        // restore RecyclerView state
+        if (mBundleRecyclerViewState != null) {
+            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+            recyclerView.getLayoutManager().onRestoreInstanceState(listState);
+        }
+    }
+
+    private void saveRecyclerViewState() {
+        // save RecyclerView state
+        mBundleRecyclerViewState = new Bundle();
+        Parcelable listState = recyclerView.getLayoutManager().onSaveInstanceState();
+        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        saveRecyclerViewState();
     }
 
     @Override
