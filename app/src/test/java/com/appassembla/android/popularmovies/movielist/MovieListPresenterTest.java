@@ -69,7 +69,7 @@ public class MovieListPresenterTest {
     }
 
     @Test
-    public void shouldShowNoMoviesForInvalidDisplayType() {
+    public void shouldShowNoMoviesForInvalidSortType() {
         when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(INVALID_SORT_TYPE);
