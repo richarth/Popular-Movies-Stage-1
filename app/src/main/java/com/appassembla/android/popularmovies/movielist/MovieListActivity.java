@@ -128,6 +128,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        movieListPresenter = null;
+    }
+
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 

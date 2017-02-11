@@ -100,4 +100,11 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         synopsisTextView.setText(selectedMovie.plotSynopsis());
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        movieDetailsPresenter = null;
+    }
 }
