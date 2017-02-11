@@ -21,8 +21,8 @@ public class MovieListPresenter implements MovieListEvents {
         this.moviesRepository = moviesRepository;
     }
 
-    public void displayMovies() {
-        List<Movie> movies = moviesRepository.getMovies(1);
+    public void displayMovies(int movieListSortType) {
+        List<Movie> movies = moviesRepository.getMovies(movieListSortType);
 
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();

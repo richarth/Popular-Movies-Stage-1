@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 
 import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsActivity;
 import com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment;
@@ -84,7 +85,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         setupPresenter();
 
-        movieListPresenter.displayMovies();
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         restoreRecyclerViewState();
     }

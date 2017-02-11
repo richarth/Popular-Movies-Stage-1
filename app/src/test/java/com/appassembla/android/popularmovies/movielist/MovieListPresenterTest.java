@@ -28,9 +28,9 @@ public class MovieListPresenterTest {
     private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final int MOVIE_SORT_TYPE = 1;
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
+    private static final int INVALID_SORT_TYPE = 0;
 
     @Before
     public void setUp() throws Exception {
@@ -39,32 +39,41 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowMoviesList() {
-        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
-        movieListPresenter.displayMovies();
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         verify(movieListView).displayMoviesList(SOME_MOVIES);
     }
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
-        movieListPresenter.displayMovies();
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         verify(movieListView).displayNoMoviesMessage();
     }
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(moviesRepository.getMovies(MOVIE_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
         int clickedPosition = 1;
 
-        movieListPresenter.displayMovies();
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         movieListPresenter.movieClicked(clickedPosition);
 
         verify(movieListView).displayMovieDetail(clickedPosition);
+    }
+
+    @Test
+    public void shouldShowNoMoviesForInvalidDisplayType() {
+        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(EMPTY_LIST);
+
+        movieListPresenter.displayMovies(INVALID_SORT_TYPE);
+
+        verify(movieListView).displayNoMoviesMessage();
     }
 }
