@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,9 @@ import com.appassembla.android.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static android.view.View.*;
 
@@ -41,10 +46,20 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
      */
     private boolean mTwoPane;
 
-    private RecyclerView recyclerView;
+    @BindView(R.id.movie_list)
+    RecyclerView recyclerView;
 
     private MovieListPresenter movieListPresenter;
-    private TextView noMoviesTextView;
+
+    @BindView(R.id.no_movies_message)
+    TextView noMoviesTextView;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Nullable
+    @BindView(R.id.movie_detail_container)
+    FrameLayout movieDetailContainer;
 
     private static final String SCROLL_POSITION_KEY = "scrollPosition";
     private final String KEY_RECYCLER_STATE = "recycler_state";
@@ -55,17 +70,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
+        ButterKnife.bind(this);
+
         setupToolbar();
 
-        findRecyclerView();
-
-        findNoMoviesMessage();
-
         checkIfInTwoPaneMode();
-
-        setupPresenter();
-
-        movieListPresenter.displayMovies();
     }
 
     @Override
@@ -73,22 +82,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     {
         super.onResume();
 
+        setupPresenter();
+
+        movieListPresenter.displayMovies();
+
         restoreRecyclerViewState();
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-    }
-
-    private void findRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.movie_list);
-        assert recyclerView != null;
-    }
-
-    private void findNoMoviesMessage() {
-        noMoviesTextView = (TextView) findViewById(R.id.no_movies_message);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
@@ -100,7 +103,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     private void checkIfInTwoPaneMode() {
-        if (findViewById(R.id.movie_detail_container) != null) {
+        if (movieDetailContainer != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -201,12 +204,15 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final ImageView posterView;
+            @BindView(R.id.movie_poster)
+            ImageView posterView;
 
             public ViewHolder(View view) {
                 super(view);
+
+                ButterKnife.bind(this, view);
+
                 mView = view;
-                posterView = (ImageView) view.findViewById(R.id.movie_poster);
             }
         }
     }

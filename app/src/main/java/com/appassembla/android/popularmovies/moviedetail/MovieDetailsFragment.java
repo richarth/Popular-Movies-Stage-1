@@ -17,6 +17,10 @@ import com.appassembla.android.popularmovies.data.WebMoviesRepository;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * A fragment representing a single Movie detail screen.
  * This fragment is either contained in a {@link MovieListActivity}
@@ -32,11 +36,18 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
     private MovieDetailsPresenter movieDetailsPresenter;
 
-    private TextView movieTitleTextView;
-    private ImageView posterImageView;
-    private TextView releaseDateTextView;
-    private TextView averageRatingTextView;
-    private TextView synopsisTextView;
+    @BindView(R.id.movie_detail)
+    TextView movieTitleTextView;
+    @BindView(R.id.detail_poster_image_view)
+    ImageView posterImageView;
+    @BindView(R.id.release_date_text_view)
+    TextView releaseDateTextView;
+    @BindView(R.id.user_rating_text_view)
+    TextView averageRatingTextView;
+    @BindView(R.id.plot_synopsis_text_view)
+    TextView synopsisTextView;
+
+    private Unbinder unbinder;
 
     public MovieDetailsFragment() {
     }
@@ -55,13 +66,14 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.movie_detail, container, false);
 
-        movieTitleTextView = (TextView) rootView.findViewById(R.id.movie_detail);
-        posterImageView = (ImageView) rootView.findViewById(R.id.detail_poster_image_view);
-        releaseDateTextView = (TextView) rootView.findViewById(R.id.release_date_text_view);
-        averageRatingTextView = (TextView) rootView.findViewById(R.id.user_rating_text_view);
-        synopsisTextView = (TextView) rootView.findViewById(R.id.plot_synopsis_text_view);
+        unbinder = ButterKnife.bind(this, rootView);
 
         return rootView;
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override

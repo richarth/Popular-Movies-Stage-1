@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * An activity representing a single Movie detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -19,10 +22,15 @@ import com.appassembla.android.popularmovies.movielist.MovieListActivity;
  */
 public class MovieDetailsActivity extends AppCompatActivity {
 
+    @BindView(R.id.detail_toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+
+        ButterKnife.bind(this);
 
         setupToolbar();
 
@@ -44,7 +52,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
     }
 
