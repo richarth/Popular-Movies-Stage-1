@@ -1,10 +1,15 @@
 package com.appassembla.android.popularmovies.moviedetail;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +51,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
     TextView synopsisTextView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private Unbinder unbinder;
 
@@ -105,12 +112,46 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
 
+        Bitmap posterBitmap = ((BitmapDrawable)posterImageView.getDrawable()).getBitmap();
+
+        Palette posterPalette = createPaletteSync(posterBitmap);
+
+        colourStatusBar(posterPalette);
+
+        colourToolbar(posterPalette);
+
         releaseDateTextView.setText(selectedMovie.releaseDate());
 
         String averageRating = Double.toString(selectedMovie.averageRating());
         averageRatingTextView.setText(averageRating);
 
         synopsisTextView.setText(selectedMovie.plotSynopsis());
+    }
+
+    private void colourToolbar(Palette p) {
+        Palette.Swatch vibrantSwatch = p.getVibrantSwatch();
+
+        // if we got a vibrant swatch set the toolbar colours
+        if (vibrantSwatch != null) {
+            // Set the toolbar background and text colors
+            toolbar.setBackgroundColor(vibrantSwatch.getRgb());
+            toolbar.setTitleTextColor(vibrantSwatch.getTitleTextColor());
+        }
+    }
+
+    private void colourStatusBar(Palette p) {
+        Palette.Swatch darkMutedSwatch = p.getDarkMutedSwatch();
+
+        // if we got a dark muted swatch set the status bar colour.
+        // We can only set the status bar colour from lollipop and up
+        if (darkMutedSwatch != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getActivity().getWindow().setStatusBarColor(darkMutedSwatch.getRgb());
+        }
+    }
+
+    public Palette createPaletteSync(Bitmap bitmap) {
+        Palette p = Palette.from(bitmap).generate();
+        return p;
     }
 
     @Override
