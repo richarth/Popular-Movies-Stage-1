@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -66,6 +67,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     private final String KEY_RECYCLER_STATE = "recycler_state";
     private static Bundle mBundleRecyclerViewState;
 
+    private static final int NUM_COLUMNS_IN_LIST = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +100,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movies));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MovieListActivity.this, NUM_COLUMNS_IN_LIST);
+
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     private void setupPresenter() {
