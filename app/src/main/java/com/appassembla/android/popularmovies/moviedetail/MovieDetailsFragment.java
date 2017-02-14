@@ -41,15 +41,15 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     private MovieDetailsPresenter movieDetailsPresenter;
 
     @BindView(R.id.movie_detail)
-    private TextView movieTitleTextView;
+    protected TextView movieTitleTextView;
     @BindView(R.id.detail_poster_image_view)
-    private ImageView posterImageView;
+    protected ImageView posterImageView;
     @BindView(R.id.release_date_text_view)
-    private TextView releaseDateTextView;
+    protected TextView releaseDateTextView;
     @BindView(R.id.user_rating_text_view)
-    private TextView averageRatingTextView;
+    protected TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
-    private TextView synopsisTextView;
+    protected TextView synopsisTextView;
     private CollapsingToolbarLayout appBarLayout;
 
     private Unbinder unbinder;
