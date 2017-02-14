@@ -32,7 +32,7 @@ public class MovieDetailsPresenterTest {
     private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         movieId = 7;
 
         movieDetailsPresenter = new MovieDetailsPresenter(movieDetailsView, moviesRepository, movieId);

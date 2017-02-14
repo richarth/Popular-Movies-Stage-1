@@ -16,12 +16,12 @@ public class StaticMoviesRepositoryTest {
     private MoviesRepository moviesRepository;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         moviesRepository = new StaticMoviesRepository();
     }
 
     @Test
-    public void shouldGetMovieWithId7() throws Exception {
+    public void shouldGetMovieWithId7() {
         Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04");
 
         Movie selectedMovie = moviesRepository.getMovieById(7);
@@ -30,7 +30,7 @@ public class StaticMoviesRepositoryTest {
     }
 
     @Test
-    public void shouldGetNoMovieWhenIdDoesntExist() throws Exception {
+    public void shouldGetNoMovieWhenIdDoesntExist() {
         Movie selectedMovie = moviesRepository.getMovieById(56);
 
         assertNull(selectedMovie);

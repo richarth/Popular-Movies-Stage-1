@@ -33,7 +33,7 @@ public class MovieListPresenterTest {
     private static final int INVALID_SORT_TYPE = 0;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         movieListPresenter = new MovieListPresenter(movieListView, moviesRepository);
     }
 
