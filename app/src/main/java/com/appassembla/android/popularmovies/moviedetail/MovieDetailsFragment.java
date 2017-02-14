@@ -41,16 +41,16 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     private MovieDetailsPresenter movieDetailsPresenter;
 
     @BindView(R.id.movie_detail)
-    TextView movieTitleTextView;
+    private TextView movieTitleTextView;
     @BindView(R.id.detail_poster_image_view)
-    ImageView posterImageView;
+    private ImageView posterImageView;
     @BindView(R.id.release_date_text_view)
-    TextView releaseDateTextView;
+    private TextView releaseDateTextView;
     @BindView(R.id.user_rating_text_view)
-    TextView averageRatingTextView;
+    private TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
-    TextView synopsisTextView;
-    CollapsingToolbarLayout appBarLayout;
+    private TextView synopsisTextView;
+    private CollapsingToolbarLayout appBarLayout;
 
     private Unbinder unbinder;
 
@@ -149,7 +149,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         }
     }
 
-    public Palette createPaletteSync(Bitmap bitmap) {
+    private Palette createPaletteSync(Bitmap bitmap) {
         Palette p = Palette.from(bitmap).generate();
         return p;
     }

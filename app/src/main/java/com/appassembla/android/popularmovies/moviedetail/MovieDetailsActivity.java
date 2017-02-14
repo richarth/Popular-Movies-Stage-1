@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 public class MovieDetailsActivity extends AppCompatActivity {
 
     @BindView(R.id.detail_toolbar)
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

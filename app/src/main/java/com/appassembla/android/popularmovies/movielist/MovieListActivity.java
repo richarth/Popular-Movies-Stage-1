@@ -49,19 +49,19 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     private boolean mTwoPane;
 
     @BindView(R.id.movie_list)
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
 
     private MovieListPresenter movieListPresenter;
 
     @BindView(R.id.no_movies_message)
-    TextView noMoviesTextView;
+    private TextView noMoviesTextView;
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
     @Nullable
     @BindView(R.id.movie_detail_container)
-    FrameLayout movieDetailContainer;
+    private FrameLayout movieDetailContainer;
 
     private final static String KEY_RECYCLER_STATE = "recycler_state";
     private static Bundle mBundleRecyclerViewState;
