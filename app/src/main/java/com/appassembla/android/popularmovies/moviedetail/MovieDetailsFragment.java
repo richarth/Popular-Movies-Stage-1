@@ -51,8 +51,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
     TextView synopsisTextView;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    CollapsingToolbarLayout appBarLayout;
 
     private Unbinder unbinder;
 
@@ -75,6 +74,10 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         unbinder = ButterKnife.bind(this, rootView);
 
+        Activity activity = this.getActivity();
+
+        appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+
         return rootView;
     }
 
@@ -93,8 +96,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     }
 
     private void setToolbarTitle(String movieName) {
-        Activity activity = this.getActivity();
-        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
             appBarLayout.setTitle(movieName);
         }
@@ -134,8 +135,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         // if we got a vibrant swatch set the toolbar colours
         if (vibrantSwatch != null) {
             // Set the toolbar background and text colors
-            toolbar.setBackgroundColor(vibrantSwatch.getRgb());
-            toolbar.setTitleTextColor(vibrantSwatch.getTitleTextColor());
+            appBarLayout.setBackgroundColor(vibrantSwatch.getRgb());
+            //appBarLayout.setTitleTextColor(vibrantSwatch.getTitleTextColor());
         }
     }
 
