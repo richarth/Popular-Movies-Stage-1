@@ -7,16 +7,12 @@ import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Created by richard.thompson on 08/02/2017.
