@@ -63,8 +63,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     @BindView(R.id.movie_detail_container)
     FrameLayout movieDetailContainer;
 
-    private static final String SCROLL_POSITION_KEY = "scrollPosition";
-    private final String KEY_RECYCLER_STATE = "recycler_state";
+    private final static String KEY_RECYCLER_STATE = "recycler_state";
     private static Bundle mBundleRecyclerViewState;
 
     private static final int NUM_COLUMNS_IN_LIST = 2;
