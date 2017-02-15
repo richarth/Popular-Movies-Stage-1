@@ -149,13 +149,13 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             Intent intent = new Intent(this, MovieDetailsActivity.class);
             intent.putExtra(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
 
-            String transName = getString(R.string.detail_transition);
+            String transName = getString(R.string.poster_transition);
 
             SimpleItemRecyclerViewAdapter.ViewHolder currentPositionViewHolder = (SimpleItemRecyclerViewAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(moviePositionInAdapter);
 
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MovieListActivity.this, currentPositionViewHolder.posterView, transName);
 
-            // Transitions are only supported from Jelly Bean and up
+            // Animated transitions are only supported from Jelly Bean and up
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 startActivity(intent, optionsCompat.toBundle());
             } else {

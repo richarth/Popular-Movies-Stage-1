@@ -11,7 +11,7 @@
         android:id="@+id/detail_poster_image_view"
         android:layout_gravity="center"
         tools:src="@mipmap/ic_launcher"
-        android:transitionName="@string/detail_transition"/>
+        android:transitionName="@string/poster_transition"/>
 
     <TextView
         style="?android:attr/textAppearanceMedium"
