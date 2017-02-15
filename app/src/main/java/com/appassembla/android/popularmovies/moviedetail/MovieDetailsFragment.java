@@ -50,6 +50,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     protected TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
     protected TextView synopsisTextView;
+    private ImageView heroImage;
     private CollapsingToolbarLayout appBarLayout;
 
     private Unbinder unbinder;
@@ -76,6 +77,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         Activity activity = this.getActivity();
 
         appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+
+        heroImage = (ImageView) activity.findViewById(R.id.backdrop);
 
         return rootView;
     }
@@ -112,6 +115,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
 
+        posterImageView.setContentDescription(selectedMovie.name());
+
         BitmapDrawable posterDrawable = (BitmapDrawable) posterImageView.getDrawable();
 
         if (posterDrawable != null) {
@@ -124,6 +129,10 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
             colourToolbar(posterPalette);
         }
+
+        Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(heroImage);
+
+        heroImage.setContentDescription(selectedMovie.name());
 
         releaseDateTextView.setText(selectedMovie.releaseDate());
 
