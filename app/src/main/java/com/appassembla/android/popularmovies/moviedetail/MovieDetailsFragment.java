@@ -112,13 +112,18 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
 
-        Bitmap posterBitmap = ((BitmapDrawable)posterImageView.getDrawable()).getBitmap();
+        BitmapDrawable posterDrawable = (BitmapDrawable) posterImageView.getDrawable();
 
-        Palette posterPalette = createPaletteSync(posterBitmap);
+        if (posterDrawable != null) {
 
-        colourStatusBar(posterPalette);
+            Bitmap posterBitmap = posterDrawable.getBitmap();
 
-        colourToolbar(posterPalette);
+            Palette posterPalette = createPaletteSync(posterBitmap);
+
+            colourStatusBar(posterPalette);
+
+            colourToolbar(posterPalette);
+        }
 
         releaseDateTextView.setText(selectedMovie.releaseDate());
 
