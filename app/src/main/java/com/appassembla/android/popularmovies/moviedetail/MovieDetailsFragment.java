@@ -40,8 +40,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
     private MovieDetailsPresenter movieDetailsPresenter;
 
-    @BindView(R.id.movie_detail)
-    protected TextView movieTitleTextView;
     @BindView(R.id.detail_poster_image_view)
     protected ImageView posterImageView;
     @BindView(R.id.release_date_text_view)
@@ -110,8 +108,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     @Override
     public void displayMovieDetails(@NonNull Movie selectedMovie) {
         setToolbarTitle(selectedMovie.name());
-
-        movieTitleTextView.setText(selectedMovie.name());
 
         Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
 
