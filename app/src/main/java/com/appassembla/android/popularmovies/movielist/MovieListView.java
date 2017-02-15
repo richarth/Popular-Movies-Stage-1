@@ -11,5 +11,5 @@ import java.util.List;
 interface MovieListView {
     void displayMoviesList(List<Movie> moviesList);
     void displayNoMoviesMessage();
-    void displayMovieDetail(int moviePosition);
+    void displayMovieDetail(int moviePosition, int adapterPosition);
 }

@@ -1,10 +1,12 @@
 package com.appassembla.android.popularmovies.movielist;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -134,7 +136,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    public void displayMovieDetail(int moviePositionInRepository) {
+    public void displayMovieDetail(int moviePositionInRepository, int moviePositionInAdapter) {
         if (mTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
@@ -147,7 +149,18 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             Intent intent = new Intent(this, MovieDetailsActivity.class);
             intent.putExtra(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
 
-            startActivity(intent);
+            String transName = getString(R.string.detail_transition);
+
+            SimpleItemRecyclerViewAdapter.ViewHolder currentPositionViewHolder = (SimpleItemRecyclerViewAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(moviePositionInAdapter);
+
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MovieListActivity.this, currentPositionViewHolder.posterView, transName);
+
+            // Transitions are only supported from Jelly Bean and up
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                startActivity(intent, optionsCompat.toBundle());
+            } else {
+                startActivity(intent);
+            }
         }
     }
 
@@ -201,7 +214,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             Picasso.with(getApplication()).load(Movie.posterImgBaseUrl + mValues.get(position).posterUrl()).into(holder.posterView);
             holder.posterView.setContentDescription(mValues.get(position).name());
 
-            holder.mView.setOnClickListener(v -> movieListPresenter.movieClicked(mValues.get(holder.getAdapterPosition()).id()));
+            int clickedPosition = holder.getAdapterPosition();
+
+            holder.mView.setOnClickListener(v -> movieListPresenter.movieClicked(mValues.get(clickedPosition).id(), clickedPosition));
         }
 
         @Override

@@ -32,7 +32,7 @@ public class MovieListPresenter implements MovieListEvents {
     }
 
     @Override
-    public void movieClicked(int movieId) {
-         movieListView.displayMovieDetail(movieId);
+    public void movieClicked(int movieId, int adapterPosition) {
+         movieListView.displayMovieDetail(movieId, adapterPosition);
     }
 }

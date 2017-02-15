@@ -61,11 +61,13 @@ public class MovieListPresenterTest {
 
         int clickedPosition = 1;
 
+        int adapterPosition = 2;
+
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
-        movieListPresenter.movieClicked(clickedPosition);
+        movieListPresenter.movieClicked(clickedPosition, adapterPosition);
 
-        verify(movieListView).displayMovieDetail(clickedPosition);
+        verify(movieListView).displayMovieDetail(clickedPosition, adapterPosition);
     }
 
     @Test

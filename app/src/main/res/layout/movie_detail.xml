@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/detail_poster_image_view"
         android:layout_gravity="center"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@mipmap/ic_launcher"
+        android:transitionName="@string/detail_transition"/>
 
     <TextView
         style="?android:attr/textAppearanceMedium"
