@@ -130,7 +130,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         heroImage.setContentDescription(selectedMovie.name());
 
-        releaseDateTextView.setText(selectedMovie.releaseDate());
+        releaseDateTextView.setText(selectedMovie.geMovieYear());
 
         String averageRating = Double.toString(selectedMovie.averageRating());
         averageRatingTextView.setText(averageRating);
