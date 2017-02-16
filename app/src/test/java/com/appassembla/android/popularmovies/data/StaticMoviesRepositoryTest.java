@@ -40,7 +40,7 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetMovieYear() {
         Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
 
-        String movieYear = testMovie.geMovieYear();
+        String movieYear = testMovie.getMovieYear();
 
         assertEquals("1979", movieYear);
     }
@@ -49,7 +49,7 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetEmptyMovieYear() {
         Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "", "http://i.imgur.com/DvpvklR.png");
 
-        String movieYear = testMovie.geMovieYear();
+        String movieYear = testMovie.getMovieYear();
 
         assertEquals("", movieYear);
     }

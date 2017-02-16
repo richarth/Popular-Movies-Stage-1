@@ -39,7 +39,7 @@ public abstract class Movie {
         return new AutoValue_Movie.MoshiJsonAdapter(moshi);
     }
 
-    public String geMovieYear() {
+    public String getMovieYear() {
         if (releaseDate() != null  && !releaseDate().trim().isEmpty()) {
             return releaseDate().substring(0, 4);
         }
