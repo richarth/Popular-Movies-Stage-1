@@ -38,4 +38,12 @@ public abstract class Movie {
     public static JsonAdapter<Movie> jsonAdapter(Moshi moshi) {
         return new AutoValue_Movie.MoshiJsonAdapter(moshi);
     }
+
+    public String geMovieYear() {
+        if (releaseDate() != null  && !releaseDate().trim().isEmpty()) {
+            return releaseDate().substring(0, 4);
+        }
+
+        return "";
+    }
 }
