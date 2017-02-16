@@ -22,7 +22,7 @@ public class StaticMoviesRepositoryTest {
 
     @Test
     public void shouldGetMovieWithId7() {
-        Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04");
+        Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
 
         Movie selectedMovie = moviesRepository.getMovieById(7);
 

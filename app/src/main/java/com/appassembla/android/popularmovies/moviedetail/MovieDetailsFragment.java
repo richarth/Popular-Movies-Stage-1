@@ -109,7 +109,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     public void displayMovieDetails(@NonNull Movie selectedMovie) {
         setToolbarTitle(selectedMovie.name());
 
-        Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(posterImageView);
+        Picasso.with(getActivity()).load(Movie.IMG_BASE_URL + Movie.POSTER_IMG_SIZE + selectedMovie.posterUrl()).into(posterImageView);
 
         posterImageView.setContentDescription(selectedMovie.name());
 
@@ -126,7 +126,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
             colourToolbar(posterPalette);
         }
 
-        Picasso.with(getActivity()).load(Movie.posterImgBaseUrl + selectedMovie.posterUrl()).into(heroImage);
+        Picasso.with(getActivity()).load(Movie.IMG_BASE_URL + Movie.HERO_IMG_SIZE + selectedMovie.backdropUrl()).into(heroImage);
 
         heroImage.setContentDescription(selectedMovie.name());
 

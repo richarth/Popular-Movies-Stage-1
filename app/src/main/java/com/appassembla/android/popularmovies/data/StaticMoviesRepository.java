@@ -14,11 +14,11 @@ public class StaticMoviesRepository implements MoviesRepository {
     private final List<Movie> movies;
 
     public StaticMoviesRepository() {
-        Movie movie7 = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04");
+        Movie movie7 = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
 
-        Movie movie4 = Movie.create(4, "Movie 4", "http://i.imgur.com/DvpvklR.png", "Movie 4 is about an archaeologist", 0, "1983-07-04");
+        Movie movie4 = Movie.create(4, "Movie 4", "http://i.imgur.com/DvpvklR.png", "Movie 4 is about an archaeologist", 0, "1983-07-04", "http://i.imgur.com/DvpvklR.png");
 
-        Movie movie8 = Movie.create(8, "Movie 8", "http://i.imgur.com/DvpvklR.png", "Movie 8 is about an alien", 0, "1988-12-25");
+        Movie movie8 = Movie.create(8, "Movie 8", "http://i.imgur.com/DvpvklR.png", "Movie 8 is about an alien", 0, "1988-12-25", "http://i.imgur.com/DvpvklR.png");
 
         movies = Arrays.asList(movie7, movie4, movie8);
     }
