@@ -46,4 +46,12 @@ public abstract class Movie {
 
         return "";
     }
+
+    public String getPosterImgFullUrl() {
+        return IMG_BASE_URL + POSTER_IMG_SIZE + posterUrl();
+    }
+
+    public String getHeroImgFullUrl() {
+        return IMG_BASE_URL + HERO_IMG_SIZE + backdropUrl();
+    }
 }

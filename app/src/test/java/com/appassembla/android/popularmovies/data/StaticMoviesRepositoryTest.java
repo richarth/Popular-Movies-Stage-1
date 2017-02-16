@@ -54,4 +54,22 @@ public class StaticMoviesRepositoryTest {
         assertEquals("", movieYear);
     }
 
+    @Test
+    public void shouldGetValidPosterImgUrl() {
+        Movie testMovie = Movie.create(7, "Movie 7", "/DvpvklR.png", "Movie 7 is about Jedi", 0, "", "/DvpvklR2.png");
+
+        String posterUrl = testMovie.getPosterImgFullUrl();
+
+        assertEquals("http://image.tmdb.org/t/p/w500/DvpvklR.png", posterUrl);
+    }
+
+    @Test
+    public void shouldGetValidHeroImgUrl() {
+        Movie testMovie = Movie.create(7, "Movie 7", "/DvpvklR.png", "Movie 7 is about Jedi", 0, "", "/DvpvklR2.png");
+
+        String posterUrl = testMovie.getHeroImgFullUrl();
+
+        assertEquals("http://image.tmdb.org/t/p/w780/DvpvklR2.png", posterUrl);
+    }
+
 }
