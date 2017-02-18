@@ -119,9 +119,12 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         posterImageView.setContentDescription(selectedMovie.name());
 
-        Picasso.with(getActivity()).load(selectedMovie.getHeroImgFullUrl()).into(heroImage);
+        // on tablet the hero image won't be present
+        if (heroImage != null) {
+            Picasso.with(getActivity()).load(selectedMovie.getHeroImgFullUrl()).into(heroImage);
 
-        heroImage.setContentDescription(selectedMovie.name());
+            heroImage.setContentDescription(selectedMovie.name());
+        }
 
         /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             ColorStateList backgroundTintList = heroImage.getBackgroundTintList();
