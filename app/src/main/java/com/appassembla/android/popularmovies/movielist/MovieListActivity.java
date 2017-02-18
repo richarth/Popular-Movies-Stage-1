@@ -7,15 +7,21 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -42,7 +48,7 @@ import static android.view.View.*;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class MovieListActivity extends AppCompatActivity implements MovieListView {
+public class MovieListActivity extends AppCompatActivity implements MovieListView, AdapterView.OnItemSelectedListener {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -60,6 +66,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
+
+    //@BindView(R.id.spinner_nav)
+    //protected MenuItem sortSpinner;
 
     @Nullable
     @BindView(R.id.movie_detail_container)
@@ -93,6 +102,25 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         restoreRecyclerViewState();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.sort_order_spinner_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.sort_order_spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.sort_order_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setOnItemSelectedListener(this);
+
+        spinner.setAdapter(adapter);
+
+        return true;
+    }
+
 
     private void setupToolbar() {
         setSupportActionBar(toolbar);
@@ -191,6 +219,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         super.onStop();
 
         movieListPresenter = null;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        movieListPresenter.displayMovies(position + 1);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public class SimpleItemRecyclerViewAdapter
