@@ -59,11 +59,11 @@ public class WebMoviesRepository implements MoviesRepository {
                     MoviesListing moviesListing = getMoviesCall.execute().body();
 
                     moviesFound = moviesListing.results();
-
-                    executionCompleted.countDown();
                 } catch (IOException e) {
                     Log.d(TAG, e.getMessage());
                 }
+
+                executionCompleted.countDown();
 
             }).start();
 
@@ -91,11 +91,11 @@ public class WebMoviesRepository implements MoviesRepository {
         new Thread(() -> {
             try {
                 selectedMovie = getMovieDetailsCall.execute().body();
-
-                executionCompleted.countDown();
             } catch (IOException e) {
                 Log.d(TAG, e.getMessage());
             }
+
+            executionCompleted.countDown();
 
         }).start();
 
