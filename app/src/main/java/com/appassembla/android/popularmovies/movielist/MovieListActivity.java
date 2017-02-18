@@ -48,7 +48,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
-    private boolean mTwoPane;
+    private boolean isTwoPane;
 
     @BindView(R.id.movie_list)
     protected RecyclerView recyclerView;
@@ -66,7 +66,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     protected FrameLayout movieDetailContainer;
 
     private final static String KEY_RECYCLER_STATE = "recycler_state";
-    private static Bundle mBundleRecyclerViewState;
+    private static Bundle bundleRecyclerViewState;
 
     private static final int NUM_COLUMNS_IN_LIST = 2;
 
@@ -117,7 +117,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
             // activity should be in two-pane mode.
-            mTwoPane = true;
+            isTwoPane = true;
         }
     }
 
@@ -137,7 +137,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @Override
     public void displayMovieDetail(int moviePositionInRepository, int moviePositionInAdapter) {
-        if (mTwoPane) {
+        if (isTwoPane) {
             Bundle arguments = new Bundle();
             arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
             MovieDetailsFragment fragment = new MovieDetailsFragment();
@@ -166,17 +166,17 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     private void restoreRecyclerViewState() {
         // restore RecyclerView state
-        if (mBundleRecyclerViewState != null) {
-            Parcelable listState = mBundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
+        if (bundleRecyclerViewState != null) {
+            Parcelable listState = bundleRecyclerViewState.getParcelable(KEY_RECYCLER_STATE);
             recyclerView.getLayoutManager().onRestoreInstanceState(listState);
         }
     }
 
     private void saveRecyclerViewState() {
         // save RecyclerView state
-        mBundleRecyclerViewState = new Bundle();
+        bundleRecyclerViewState = new Bundle();
         Parcelable listState = recyclerView.getLayoutManager().onSaveInstanceState();
-        mBundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
+        bundleRecyclerViewState.putParcelable(KEY_RECYCLER_STATE, listState);
     }
 
     @Override
