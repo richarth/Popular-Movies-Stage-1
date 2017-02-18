@@ -21,10 +21,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/movie_list"
         android:name="com.appassembla.android.popularmovies.MovieListFragment"
-        android:layout_width="@dimen/item_width"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
         app:layoutManager="LinearLayoutManager"
         tools:context="com.appassembla.android.popularmovies.movielist.MovieListActivity"
         tools:listitem="@layout/movie_list_content" />
@@ -33,7 +34,7 @@
         android:id="@+id/movie_detail_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="1"
         tools:ignore="InconsistentLayout" />
 
 </LinearLayout>
