@@ -126,67 +126,12 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
             heroImage.setContentDescription(selectedMovie.name());
         }
 
-        /*if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ColorStateList backgroundTintList = heroImage.getBackgroundTintList();
-        }
-
-        BitmapDrawable posterDrawable = (BitmapDrawable) heroImage.getDrawable();
-
-        if (posterDrawable != null) {
-
-            Bitmap posterBitmap = posterDrawable.getBitmap();
-
-            Palette posterPalette = createPaletteSync(posterBitmap);
-
-            colourStatusBar(posterPalette);
-
-            colourToolbar(posterPalette);
-        }*/
-
         releaseDateTextView.setText(selectedMovie.getMovieYear());
 
         String averageRating = Double.toString(selectedMovie.averageRating()) + "/10";
         averageRatingTextView.setText(averageRating);
 
         synopsisTextView.setText(selectedMovie.plotSynopsis());
-    }
-
-    private void colourToolbar(Palette p) {
-        //Palette.Swatch vibrantSwatch = p.getVibrantSwatch();
-        Palette.Swatch vibrantSwatch = p.getDominantSwatch();
-        Palette.Swatch vibrantSwatch2 = p.getDarkVibrantSwatch();
-        Palette.Swatch vibrantSwatch3 = p.getLightVibrantSwatch();
-        Palette.Swatch vibrantSwatch4 = p.getMutedSwatch();
-        Palette.Swatch vibrantSwatch5 = p.getDarkMutedSwatch();
-        Palette.Swatch vibrantSwatch6 = p.getLightMutedSwatch();
-        List<Palette.Swatch> swatches = p.getSwatches();
-        List<Target> targets = p.getTargets();
-
-        // if we got a vibrant swatch set the toolbar colours
-        if (vibrantSwatch != null) {
-            // Set the toolbar background and text colors
-            //appBarLayout.setBackgroundColor(vibrantSwatch.getRgb());
-            /*Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.detail_toolbar);
-            toolbar.setBackgroundColor(vibrantSwatch.getRgb());*/
-            AppBarLayout appBar = (AppBarLayout) getActivity().findViewById(R.id.app_bar);
-            appBarLayout.setContentScrimColor(vibrantSwatch.getRgb());
-            //appBarLayout.setTitleTextColor(vibrantSwatch.getTitleTextColor());
-        }
-    }
-
-    private void colourStatusBar(Palette p) {
-        Palette.Swatch darkMutedSwatch = p.getDarkMutedSwatch();
-
-        // if we got a dark muted swatch set the status bar colour.
-        // We can only set the status bar colour from lollipop and up
-        if (darkMutedSwatch != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getActivity().getWindow().setStatusBarColor(darkMutedSwatch.getRgb());
-        }
-    }
-
-    private Palette createPaletteSync(Bitmap bitmap) {
-        Palette p = Palette.from(bitmap).generate();
-        return p;
     }
 
     @Override
