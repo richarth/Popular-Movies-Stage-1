@@ -3,4 +3,6 @@
     <string name="title_movie_detail">Movie Detail</string>
     <string name="no_movies_found">No movies found</string>
     <string name="poster_transition">poster_transition</string>
+    <string name="sort_by">Sort by</string>
+    <string name="sort">Sort</string>
 </resources>
