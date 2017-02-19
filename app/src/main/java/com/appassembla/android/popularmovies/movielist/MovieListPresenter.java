@@ -29,6 +29,8 @@ public class MovieListPresenter implements MovieListEvents {
         } else {
             movieListView.displayMoviesList(movies);
         }
+
+        movieListView.hideProgressBar();
     }
 
     @Override

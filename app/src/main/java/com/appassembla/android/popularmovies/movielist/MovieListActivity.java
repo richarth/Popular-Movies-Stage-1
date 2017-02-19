@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -66,6 +67,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
+
+    @BindView(R.id.progressBar)
+    protected ProgressBar progressBar;
 
     private Spinner sortSpinner;
 
@@ -177,6 +181,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     public void displayNoMoviesMessage() {
         recyclerView.setVisibility(INVISIBLE);
         noMoviesTextView.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(GONE);
     }
 
     @Override

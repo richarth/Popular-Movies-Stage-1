@@ -47,7 +47,25 @@ public class MovieListPresenterTest {
     }
 
     @Test
+    public void shouldHideSpinnerAfterMoviesFound() {
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
+
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+
+        verify(movieListView).hideProgressBar();
+    }
+
+    @Test
     public void shouldShowNoMoviesList() {
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
+
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+
+        verify(movieListView).displayNoMoviesMessage();
+    }
+
+    @Test
+    public void shouldHideSpinnerAfterNoMoviesFound() {
         when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
