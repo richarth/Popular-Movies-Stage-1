@@ -105,6 +105,19 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        setupSortSpinner(menu);
+
+        return true;
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getTitle());
+    }
+
+    private void setupSortSpinner(Menu menu) {
         getMenuInflater().inflate(R.menu.sort_order_spinner_menu, menu);
 
         MenuItem item = menu.findItem(R.id.sort_order_spinner);
@@ -117,14 +130,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         spinner.setOnItemSelectedListener(this);
 
         spinner.setAdapter(adapter);
-
-        return true;
-    }
-
-
-    private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
