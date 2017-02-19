@@ -54,4 +54,12 @@ public abstract class Movie {
     public String getHeroImgFullUrl() {
         return IMG_BASE_URL + HERO_IMG_SIZE + backdropUrl();
     }
+
+    public static int determineDesiredSortOrder(int sortSpinnerSelectedPosition) {
+        if (sortSpinnerSelectedPosition == 1) {
+            return MoviesRepository.TOP_RATED_SORT_TYPE;
+        } else {
+            return MoviesRepository.POPULAR_SORT_TYPE;
+        }
+    }
 }

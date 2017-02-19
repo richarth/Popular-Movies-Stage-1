@@ -67,8 +67,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
-    //@BindView(R.id.spinner_nav)
-    //protected MenuItem sortSpinner;
+    private Spinner sortSpinner;
 
     @Nullable
     @BindView(R.id.movie_detail_container)
@@ -79,10 +78,18 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     private static final int NUM_COLUMNS_IN_LIST = 2;
 
+    private final static String KEY_SPINNER_POSITION = "spinner_position";
+
+    private int lastSelectedSpinnerPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
+
+        if (savedInstanceState != null) {
+            lastSelectedSpinnerPosition = savedInstanceState.getInt(KEY_SPINNER_POSITION, 0);
+        }
 
         ButterKnife.bind(this);
 
@@ -98,7 +105,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         setupPresenter();
 
-        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+        int desiredMoviesSortOrder = Movie.determineDesiredSortOrder(lastSelectedSpinnerPosition);
+
+        movieListPresenter.displayMovies(desiredMoviesSortOrder);
 
         restoreRecyclerViewState();
     }
@@ -121,15 +130,17 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         getMenuInflater().inflate(R.menu.sort_order_spinner_menu, menu);
 
         MenuItem item = menu.findItem(R.id.sort_order_spinner);
-        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
+        sortSpinner = (Spinner) MenuItemCompat.getActionView(item);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
                 R.array.sort_order_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setOnItemSelectedListener(this);
+        sortSpinner.setAdapter(adapter);
 
-        spinner.setAdapter(adapter);
+        sortSpinner.setSelection(lastSelectedSpinnerPosition);
+
+        sortSpinner.setOnItemSelectedListener(this);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
@@ -224,6 +235,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         super.onStop();
 
         movieListPresenter = null;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_SPINNER_POSITION, sortSpinner.getSelectedItemPosition());
     }
 
     @Override
