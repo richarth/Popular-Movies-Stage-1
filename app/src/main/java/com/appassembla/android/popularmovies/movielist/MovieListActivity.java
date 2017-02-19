@@ -184,6 +184,11 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(VISIBLE);
+    }
+
+    @Override
     public void hideProgressBar() {
         progressBar.setVisibility(GONE);
     }

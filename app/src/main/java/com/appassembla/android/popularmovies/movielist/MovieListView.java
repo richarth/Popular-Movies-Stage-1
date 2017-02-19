@@ -12,5 +12,6 @@ interface MovieListView {
     void displayMoviesList(List<Movie> moviesList);
     void displayNoMoviesMessage();
     void displayMovieDetail(int moviePosition, int adapterPosition);
+    void showProgressBar();
     void hideProgressBar();
 }

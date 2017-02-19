@@ -24,6 +24,8 @@ public class MovieListPresenter implements MovieListEvents {
     public void displayMovies(int movieListSortType) {
         List<Movie> movies = moviesRepository.getMovies(movieListSortType);
 
+        movieListView.showProgressBar();
+
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();
         } else {
