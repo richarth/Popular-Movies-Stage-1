@@ -5,12 +5,19 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
+
+import static io.reactivex.Observable.just;
+import static io.reactivex.Single.just;
+
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
 
 public class StaticMoviesRepository implements MoviesRepository {
 
+    private final MoviesListing moviesListing;
     private final List<Movie> movies;
 
     public StaticMoviesRepository() {
@@ -21,20 +28,23 @@ public class StaticMoviesRepository implements MoviesRepository {
         Movie movie8 = Movie.create(8, "Movie 8", "http://i.imgur.com/DvpvklR.png", "Movie 8 is about an alien", 0, "1988-12-25", "http://i.imgur.com/DvpvklR.png");
 
         movies = Arrays.asList(movie7, movie4, movie8);
+
+        moviesListing = new MoviesListing() {
+            @Override
+            public List<Movie> results() {
+                return movies;
+            }
+        };
     }
 
     @Override
     @NonNull
-    public void fetchMovies(int sortType) {
+    public Observable<MoviesListing> getMovies(int sortType) {
+        return Observable.just(moviesListing);
     }
 
     @Override
-    public List<Movie> getMoviesFetched() {
-        return movies;
-    }
-
-    @Override
-    public Movie getMovieById(final int movieId) {
+    public Single<Movie> getMovieById(final int movieId) {
 
         Movie selectedMovie = null;
 
@@ -42,6 +52,6 @@ public class StaticMoviesRepository implements MoviesRepository {
             selectedMovie = movies.stream().filter(m -> m.id() == movieId).findFirst().get();
         }
 
-        return selectedMovie;
+        return Single.just(selectedMovie);
     }
 }

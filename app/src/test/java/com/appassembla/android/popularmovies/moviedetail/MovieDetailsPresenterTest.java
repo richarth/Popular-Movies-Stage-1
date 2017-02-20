@@ -1,6 +1,7 @@
 package com.appassembla.android.popularmovies.moviedetail;
 
 import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.MoviesListing;
 import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 
@@ -11,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
+
+import io.reactivex.Observable;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,8 +31,9 @@ public class MovieDetailsPresenterTest {
     private int movieId;
 
     private static final int SELECTED_MOVIE_POSITION = 0;
+    private static final int MOVIE_SORT_TYPE = 0;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMoviesFetched();
+    private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
     @Before
     public void setUp() {

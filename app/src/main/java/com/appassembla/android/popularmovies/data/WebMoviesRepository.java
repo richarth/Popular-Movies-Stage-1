@@ -3,22 +3,15 @@ package com.appassembla.android.popularmovies.data;
 import android.util.Log;
 
 import com.appassembla.android.popularmovies.BuildConfig;
-import com.appassembla.android.popularmovies.movielist.MovieListPresenter;
-import com.appassembla.android.popularmovies.movielist.MoviesPresenterContract;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.squareup.moshi.Moshi;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
+import io.reactivex.Single;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
+
+import static io.reactivex.Single.just;
 
 /**
  * Created by richard.thompson on 08/02/2017.
@@ -47,8 +40,7 @@ public class WebMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public void fetchMovies(int sortType) {
-
+    public Observable<MoviesListing> getMovies(int sortType) {
         Observable<MoviesListing> moviesData;
 
         if (sortType == MoviesRepository.TOP_RATED_SORT_TYPE) {
@@ -57,18 +49,11 @@ public class WebMoviesRepository implements MoviesRepository {
             moviesData = movieDBService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY);
         }
 
-        moviesData.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::moviesFetched,this::noMoviesFetched);
+        return moviesData;
     }
 
     @Override
-    public List<Movie> getMoviesFetched() {
-        return null;
-    }
-
-    @Override
-    public Movie getMovieById(int movieId) {
+    public Single<Movie> getMovieById(int movieId) {
 
         /*Call<Movie> getMovieDetailsCall = movieDBService.getMovieDetails(movieId, BuildConfig.MOVIE_DB_API_KEY);
 
@@ -95,16 +80,6 @@ public class WebMoviesRepository implements MoviesRepository {
             Log.d(TAG, e.getMessage());
         }*/
 
-        return selectedMovie;
-    }
-
-    private void moviesFetched(MoviesListing moviesListing) {
-        //presenter.moviesFetched(moviesListing.results());
-    }
-
-    private void noMoviesFetched(Throwable throwable) {
-        Log.d(TAG, throwable.getMessage());
-
-        //presenter.moviesFetched(Collections.EMPTY_LIST);
+        return just(selectedMovie);
     }
 }

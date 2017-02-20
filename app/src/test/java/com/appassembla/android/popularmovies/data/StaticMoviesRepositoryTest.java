@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import io.reactivex.Single;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,14 +26,14 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetMovieWithId7() {
         Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
 
-        Movie selectedMovie = moviesRepository.getMovieById(7);
+        Single<Movie> selectedMovie = moviesRepository.getMovieById(7);
 
         assertEquals(testMovie, selectedMovie);
     }
 
     @Test
     public void shouldGetNoMovieWhenIdDoesntExist() {
-        Movie selectedMovie = moviesRepository.getMovieById(56);
+        Single<Movie> selectedMovie = moviesRepository.getMovieById(56);
 
         assertNull(selectedMovie);
     }

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.data.MoviesRepository;
 
+import io.reactivex.Single;
+
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
@@ -21,8 +23,8 @@ class MovieDetailsPresenter {
     }
 
     public void displayMovie() {
-        Movie selectedMovie = moviesRepository.getMovieById(selectedMovieId);
+        Single<Movie> selectedMovie = moviesRepository.getMovieById(selectedMovieId);
 
-        movieDetailsView.displayMovieDetails(selectedMovie);
+        //movieDetailsView.displayMovieDetails(selectedMovie);
     }
 }

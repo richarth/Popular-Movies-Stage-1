@@ -1,6 +1,7 @@
 package com.appassembla.android.popularmovies.movielist;
 
 import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.MoviesListing;
 import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 
@@ -9,9 +10,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.reactivestreams.Subscriber;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+
+import static io.reactivex.Observable.just;
 import static java.util.Collections.EMPTY_LIST;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,9 +33,9 @@ public class MovieListPresenterTest {
     private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMoviesFetched();
-
     private static final int INVALID_SORT_TYPE = 0;
+
+    private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
 
     @Before
     public void setUp() {
@@ -39,11 +44,9 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowMoviesList() {
-        when(moviesRepository.getMoviesFetched()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
-
-        movieListPresenter.moviesFetched();
 
         verify(movieListView).displayMoviesList(SOME_MOVIES);
     }
@@ -52,8 +55,6 @@ public class MovieListPresenterTest {
     public void shouldToggleProgressBar() {
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
-        movieListPresenter.moviesFetched();
-
         verify(movieListView).showProgressBar();
 
         verify(movieListView).hideProgressBar();
@@ -61,26 +62,22 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
-
-        movieListPresenter.moviesFetched();
 
         verify(movieListView).displayNoMoviesMessage();
     }
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(moviesRepository.getMoviesFetched()).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
 
         int clickedPosition = 1;
 
         int adapterPosition = 2;
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
-
-        movieListPresenter.moviesFetched();
 
         movieListPresenter.movieClicked(clickedPosition, adapterPosition);
 
@@ -89,11 +86,9 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesForInvalidSortType() {
-        when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(INVALID_SORT_TYPE);
-
-        movieListPresenter.moviesFetched();
 
         verify(movieListView).displayNoMoviesMessage();
     }
