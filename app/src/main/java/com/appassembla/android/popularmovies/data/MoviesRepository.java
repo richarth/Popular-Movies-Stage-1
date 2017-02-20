@@ -1,5 +1,8 @@
 package com.appassembla.android.popularmovies.data;
 
+import android.util.Log;
+
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,6 +14,8 @@ public interface MoviesRepository {
     int TOP_RATED_SORT_TYPE = 2;
 
     void fetchMovies(int sortType);
+
+    List<Movie> getMoviesFetched();
 
     Movie getMovieById(int movieId);
 }

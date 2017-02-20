@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Richard Thompson on 04/02/2017.
  */
 
-public class MovieListPresenter implements MovieListEvents {
+public class MovieListPresenter implements MovieListEvents, MoviesPresenterContract {
 
     private final MovieListView movieListView;
     private final MoviesRepository moviesRepository;
@@ -33,7 +33,9 @@ public class MovieListPresenter implements MovieListEvents {
          movieListView.displayMovieDetail(movieId, adapterPosition);
     }
 
-    public void moviesFetched(List<Movie> movies) {
+    public void moviesFetched() {
+
+        List<Movie> movies = moviesRepository.getMoviesFetched();
 
         movieListView.hideProgressBar();
 

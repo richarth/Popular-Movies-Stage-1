@@ -27,9 +27,9 @@ public class MovieDetailsPresenterTest {
     private MovieDetailsPresenter movieDetailsPresenter;
     private int movieId;
 
-    private static final int MOVIE_SORT_TYPE = 0;
+    private static final int SELECTED_MOVIE_POSITION = 0;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().fetchMovies(MOVIE_SORT_TYPE);
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMoviesFetched();
 
     @Before
     public void setUp() {
@@ -40,11 +40,11 @@ public class MovieDetailsPresenterTest {
 
     @Test
     public void shouldShowMovieDetail() {
-        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(0));
+        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(SELECTED_MOVIE_POSITION));
 
         movieDetailsPresenter.displayMovie();
 
-        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(0));
+        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(SELECTED_MOVIE_POSITION));
     }
 
     @Test

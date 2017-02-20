@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.appassembla.android.popularmovies.BuildConfig;
 import com.appassembla.android.popularmovies.movielist.MovieListPresenter;
+import com.appassembla.android.popularmovies.movielist.MoviesPresenterContract;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.squareup.moshi.Moshi;
 
@@ -31,10 +32,7 @@ public class WebMoviesRepository implements MoviesRepository {
 
     private Movie selectedMovie = null;
 
-    private MovieListPresenter presenter;
-
-    public WebMoviesRepository(MovieListPresenter presenter) {
-        this.presenter = presenter;
+    public WebMoviesRepository() {
         Moshi moshi = new Moshi.Builder()
                 .add(MovieAdapterFactory.create())
                 .build();
@@ -62,6 +60,11 @@ public class WebMoviesRepository implements MoviesRepository {
         moviesData.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::moviesFetched,this::noMoviesFetched);
+    }
+
+    @Override
+    public List<Movie> getMoviesFetched() {
+        return null;
     }
 
     @Override
@@ -96,12 +99,12 @@ public class WebMoviesRepository implements MoviesRepository {
     }
 
     private void moviesFetched(MoviesListing moviesListing) {
-        presenter.moviesFetched(moviesListing.results());
+        //presenter.moviesFetched(moviesListing.results());
     }
 
     private void noMoviesFetched(Throwable throwable) {
         Log.d(TAG, throwable.getMessage());
 
-        presenter.moviesFetched(Collections.EMPTY_LIST);
+        //presenter.moviesFetched(Collections.EMPTY_LIST);
     }
 }

@@ -43,12 +43,16 @@ public class MovieListPresenterTest {
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
+        movieListPresenter.moviesFetched();
+
         verify(movieListView).displayMoviesList(SOME_MOVIES);
     }
 
     @Test
     public void shouldToggleProgressBar() {
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+
+        movieListPresenter.moviesFetched();
 
         verify(movieListView).showProgressBar();
 
@@ -60,6 +64,8 @@ public class MovieListPresenterTest {
         when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+
+        movieListPresenter.moviesFetched();
 
         verify(movieListView).displayNoMoviesMessage();
     }
@@ -74,6 +80,8 @@ public class MovieListPresenterTest {
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
+        movieListPresenter.moviesFetched();
+
         movieListPresenter.movieClicked(clickedPosition, adapterPosition);
 
         verify(movieListView).displayMovieDetail(clickedPosition, adapterPosition);
@@ -84,6 +92,8 @@ public class MovieListPresenterTest {
         when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(INVALID_SORT_TYPE);
+
+        movieListPresenter.moviesFetched();
 
         verify(movieListView).displayNoMoviesMessage();
     }
