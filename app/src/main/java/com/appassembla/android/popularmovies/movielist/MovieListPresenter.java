@@ -36,7 +36,7 @@ public class MovieListPresenter implements MovieListEvents {
 
         movies.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::moviesFetched, this::movieFetchFailure);
+                .subscribe(this::moviesFetched, this::moviesFetchFailure);
     }
 
     private void moviesFetched(MoviesListing moviesListing) {
@@ -51,7 +51,7 @@ public class MovieListPresenter implements MovieListEvents {
         movieListView.hideProgressBar();
     }
 
-    private void movieFetchFailure(Throwable throwable) {
+    private void moviesFetchFailure(Throwable throwable) {
         Log.d(TAG, throwable.getMessage());
 
         movieListView.displayNoMoviesMessage();
