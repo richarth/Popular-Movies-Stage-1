@@ -29,7 +29,7 @@ public class MovieDetailsPresenterTest {
 
     private static final int MOVIE_SORT_TYPE = 0;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().fetchMovies(MOVIE_SORT_TYPE);
 
     @Before
     public void setUp() {

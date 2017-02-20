@@ -3,6 +3,7 @@ package com.appassembla.android.popularmovies.movielist;
 import android.support.annotation.NonNull;
 
 import com.appassembla.android.popularmovies.data.Movie;
+import com.appassembla.android.popularmovies.data.MoviesListing;
 import com.appassembla.android.popularmovies.data.MoviesRepository;
 
 import java.util.List;
@@ -22,21 +23,24 @@ public class MovieListPresenter implements MovieListEvents {
     }
 
     public void displayMovies(int movieListSortType) {
-        List<Movie> movies = moviesRepository.getMovies(movieListSortType);
-
         movieListView.showProgressBar();
+
+        moviesRepository.fetchMovies(movieListSortType);
+    }
+
+    @Override
+    public void movieClicked(int movieId, int adapterPosition) {
+         movieListView.displayMovieDetail(movieId, adapterPosition);
+    }
+
+    public void moviesFetched(List<Movie> movies) {
+
+        movieListView.hideProgressBar();
 
         if (movies.isEmpty()) {
             movieListView.displayNoMoviesMessage();
         } else {
             movieListView.displayMoviesList(movies);
         }
-
-        movieListView.hideProgressBar();
-    }
-
-    @Override
-    public void movieClicked(int movieId, int adapterPosition) {
-         movieListView.displayMovieDetail(movieId, adapterPosition);
     }
 }

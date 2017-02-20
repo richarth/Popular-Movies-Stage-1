@@ -28,7 +28,7 @@ public class MovieListPresenterTest {
     private MoviesRepository moviesRepository;
     private MovieListPresenter movieListPresenter;
 
-    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMovies(MoviesRepository.POPULAR_SORT_TYPE);
+    private static final List<Movie> SOME_MOVIES = new StaticMoviesRepository().getMoviesFetched();
 
     private static final int INVALID_SORT_TYPE = 0;
 
@@ -39,7 +39,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowMoviesList() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMoviesFetched()).thenReturn(SOME_MOVIES);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
@@ -57,7 +57,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
@@ -66,7 +66,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMoviesFetched()).thenReturn(SOME_MOVIES);
 
         int clickedPosition = 1;
 
@@ -81,7 +81,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesForInvalidSortType() {
-        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMoviesFetched()).thenReturn(EMPTY_LIST);
 
         movieListPresenter.displayMovies(INVALID_SORT_TYPE);
 

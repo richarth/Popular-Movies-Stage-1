@@ -25,7 +25,11 @@ public class StaticMoviesRepository implements MoviesRepository {
 
     @Override
     @NonNull
-    public List<Movie> getMovies(int sortType) {
+    public void fetchMovies(int sortType) {
+    }
+
+    @Override
+    public List<Movie> getMoviesFetched() {
         return movies;
     }
 

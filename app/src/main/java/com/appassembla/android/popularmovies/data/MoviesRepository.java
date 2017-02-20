@@ -10,7 +10,7 @@ public interface MoviesRepository {
     int POPULAR_SORT_TYPE = 1;
     int TOP_RATED_SORT_TYPE = 2;
 
-    List<Movie> getMovies(int sortType);
+    void fetchMovies(int sortType);
 
     Movie getMovieById(int movieId);
 }

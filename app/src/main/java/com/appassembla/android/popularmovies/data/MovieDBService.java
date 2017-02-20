@@ -1,5 +1,6 @@
 package com.appassembla.android.popularmovies.data;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -11,11 +12,11 @@ import retrofit2.http.Query;
 
 interface MovieDBService {
     @GET("3/movie/popular")
-    Call<MoviesListing> getPopularMovies(@Query("api_key") String apiKey);
+    Observable<MoviesListing> getPopularMovies(@Query("api_key") String apiKey);
 
     @GET("3/movie/top_rated")
-    Call<MoviesListing> getTopRatedMovies(@Query("api_key") String apiKey);
+    Observable<MoviesListing> getTopRatedMovies(@Query("api_key") String apiKey);
 
     @GET("3/movie/{id}")
-    Call<Movie> getMovieDetails(@Path("id") int movieId, @Query("api_key") String apiKey);
+    Observable<Movie> getMovieDetails(@Path("id") int movieId, @Query("api_key") String apiKey);
 }
