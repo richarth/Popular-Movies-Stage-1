@@ -47,6 +47,8 @@ public class MovieListPresenter implements MovieListEvents {
         } else {
             movieListView.displayMoviesList(moviesFound);
         }
+
+        movieListView.hideProgressBar();
     }
 
     private void movieFetchFailure(Throwable throwable) {
