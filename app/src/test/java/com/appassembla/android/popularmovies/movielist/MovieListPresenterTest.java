@@ -62,21 +62,30 @@ public class MovieListPresenterTest {
     }
 
     @Test
-    public void shouldToggleProgressBar() {
-        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
-
-        verify(movieListView).showProgressBar();
-
-        verify(movieListView).hideProgressBar();
-    }
-
-    @Test
     public void shouldShowNoMoviesList() {
         when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(NO_MOVIES_OBSERVABLE);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         verify(movieListView).displayNoMoviesMessage();
+    }
+
+    @Test
+    public void shouldShowNoMoviesForInvalidSortType() {
+        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(NO_MOVIES_OBSERVABLE);
+
+        movieListPresenter.displayMovies(INVALID_SORT_TYPE);
+
+        verify(movieListView).displayNoMoviesMessage();
+    }
+
+    @Test
+    public void shouldToggleProgressBar() {
+        movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
+
+        verify(movieListView).showProgressBar();
+
+        verify(movieListView).hideProgressBar();
     }
 
     @Test
@@ -92,14 +101,5 @@ public class MovieListPresenterTest {
         movieListPresenter.movieClicked(clickedPosition, adapterPosition);
 
         verify(movieListView).displayMovieDetail(clickedPosition, adapterPosition);
-    }
-
-    @Test
-    public void shouldShowNoMoviesForInvalidSortType() {
-        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(NO_MOVIES_OBSERVABLE);
-
-        movieListPresenter.displayMovies(INVALID_SORT_TYPE);
-
-        verify(movieListView).displayNoMoviesMessage();
     }
 }
