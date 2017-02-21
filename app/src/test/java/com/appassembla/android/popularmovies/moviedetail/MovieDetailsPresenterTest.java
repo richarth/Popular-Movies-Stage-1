@@ -14,7 +14,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
+import static io.reactivex.Single.just;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,6 +37,8 @@ public class MovieDetailsPresenterTest {
 
     private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
+    private static final Single<Movie> SELECTED_MOVIE_OBSERVABLE = just(SOME_MOVIES.blockingSingle().results().get(SELECTED_MOVIE_POSITION));
+
     @Before
     public void setUp() {
         movieId = 7;
@@ -44,11 +48,11 @@ public class MovieDetailsPresenterTest {
 
     @Test
     public void shouldShowMovieDetail() {
-        when(moviesRepository.getMovieById(movieId)).thenReturn(SOME_MOVIES.get(SELECTED_MOVIE_POSITION));
+        when(moviesRepository.getMovieById(movieId)).thenReturn(SELECTED_MOVIE_OBSERVABLE);
 
         movieDetailsPresenter.displayMovie();
 
-        verify(movieDetailsView).displayMovieDetails(SOME_MOVIES.get(SELECTED_MOVIE_POSITION));
+        verify(movieDetailsView).displayMovieDetails(SELECTED_MOVIE_OBSERVABLE.blockingGet());
     }
 
     @Test

@@ -35,7 +35,8 @@ public class MovieListPresenterTest {
 
     private static final int INVALID_SORT_TYPE = 0;
 
-    private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
+    private static final Observable<MoviesListing> SOME_MOVIES_OBSERVABLE = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
+    private static final Observable<MoviesListing> NO_MOVIES_OBSERVABLE = new StaticMoviesRepository().getNoMovies();
 
     @Before
     public void setUp() {
@@ -44,11 +45,11 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowMoviesList() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES_OBSERVABLE);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
-        verify(movieListView).displayMoviesList(SOME_MOVIES);
+        verify(movieListView).displayMoviesList(SOME_MOVIES_OBSERVABLE.blockingSingle().results());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesList() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(NO_MOVIES_OBSERVABLE);
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
@@ -71,7 +72,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldDisplaySelectedMovie() {
-        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES);
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES_OBSERVABLE);
 
         int clickedPosition = 1;
 
@@ -86,7 +87,7 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldShowNoMoviesForInvalidSortType() {
-        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(EMPTY_LIST);
+        when(moviesRepository.getMovies(INVALID_SORT_TYPE)).thenReturn(NO_MOVIES_OBSERVABLE);
 
         movieListPresenter.displayMovies(INVALID_SORT_TYPE);
 

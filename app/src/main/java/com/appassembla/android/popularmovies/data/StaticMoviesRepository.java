@@ -3,6 +3,7 @@ package com.appassembla.android.popularmovies.data;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -10,6 +11,7 @@ import io.reactivex.Single;
 
 import static io.reactivex.Observable.just;
 import static io.reactivex.Single.just;
+import static java.util.Collections.*;
 
 /**
  * Created by Richard Thompson on 04/02/2017.
@@ -19,6 +21,8 @@ public class StaticMoviesRepository implements MoviesRepository {
 
     private final MoviesListing moviesListing;
     private final List<Movie> movies;
+    private final MoviesListing emptyMoviesListing;
+    private final List<Movie> noMovies;
 
     public StaticMoviesRepository() {
         Movie movie7 = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
@@ -35,12 +39,26 @@ public class StaticMoviesRepository implements MoviesRepository {
                 return movies;
             }
         };
+
+        noMovies = EMPTY_LIST;
+
+        emptyMoviesListing = new MoviesListing() {
+            @Override
+            public List<Movie> results() {
+                return noMovies;
+            }
+        };
     }
 
     @Override
     @NonNull
     public Observable<MoviesListing> getMovies(int sortType) {
         return Observable.just(moviesListing);
+    }
+
+    @NonNull
+    public Observable<MoviesListing> getNoMovies() {
+        return Observable.just(emptyMoviesListing);
     }
 
     @Override
