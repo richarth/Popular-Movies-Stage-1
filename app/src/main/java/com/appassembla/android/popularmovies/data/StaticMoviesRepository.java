@@ -3,14 +3,12 @@ package com.appassembla.android.popularmovies.data;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
 import static io.reactivex.Observable.just;
-import static io.reactivex.Single.just;
 import static java.util.Collections.*;
 
 /**
@@ -70,6 +68,10 @@ public class StaticMoviesRepository implements MoviesRepository {
             selectedMovie = movies.stream().filter(m -> m.id() == movieId).findFirst().get();
         }
 
-        return Single.just(selectedMovie);
+        if (selectedMovie != null) {
+            return Single.just(selectedMovie);
+        } else {
+            return Single.error(new NullPointerException());
+        }
     }
 }

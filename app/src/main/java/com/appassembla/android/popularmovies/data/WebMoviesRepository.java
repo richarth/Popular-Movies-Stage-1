@@ -1,7 +1,5 @@
 package com.appassembla.android.popularmovies.data;
 
-import android.util.Log;
-
 import com.appassembla.android.popularmovies.BuildConfig;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.squareup.moshi.Moshi;
@@ -54,32 +52,6 @@ public class WebMoviesRepository implements MoviesRepository {
 
     @Override
     public Single<Movie> getMovieById(int movieId) {
-
-        /*Call<Movie> getMovieDetailsCall = movieDBService.getMovieDetails(movieId, BuildConfig.MOVIE_DB_API_KEY);
-
-        final CountDownLatch executionCompleted = new CountDownLatch(1);
-
-        new Thread(() -> {
-            try {
-                selectedMovie = getMovieDetailsCall.execute().body();
-            } catch (IOException e) {
-                Log.d(TAG, e.getMessage());
-            }
-
-            executionCompleted.countDown();
-
-        }).start();
-
-        // Wait for data
-        try
-        {
-            executionCompleted.await();
-        }
-        catch (InterruptedException e)
-        {
-            Log.d(TAG, e.getMessage());
-        }*/
-
-        return just(selectedMovie);
+        return movieDBService.getMovieDetails(movieId, BuildConfig.MOVIE_DB_API_KEY);
     }
 }
