@@ -6,6 +6,7 @@ import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -15,6 +16,8 @@ import org.reactivestreams.Subscriber;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.schedulers.Schedulers;
 
 import static io.reactivex.Observable.just;
 import static java.util.Collections.EMPTY_LIST;
@@ -37,6 +40,12 @@ public class MovieListPresenterTest {
 
     private static final Observable<MoviesListing> SOME_MOVIES_OBSERVABLE = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
     private static final Observable<MoviesListing> NO_MOVIES_OBSERVABLE = new StaticMoviesRepository().getNoMovies();
+
+    @BeforeClass
+    public static void setupClass() {
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(
+                __ -> Schedulers.trampoline());
+    }
 
     @Before
     public void setUp() {
