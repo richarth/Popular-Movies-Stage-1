@@ -26,7 +26,7 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetMovieWithId7() {
         Movie testMovie = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
 
-        Single<Movie> selectedMovie = moviesRepository.getMovieById(7);
+        Movie selectedMovie = moviesRepository.getMovieById(7).blockingGet();
 
         assertEquals(testMovie, selectedMovie);
     }
