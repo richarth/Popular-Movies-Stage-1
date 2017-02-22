@@ -1,7 +1,5 @@
 package com.appassembla.android.popularmovies.data;
 
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,6 +15,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.observers.TestObserver;
 import io.reactivex.subscribers.TestSubscriber;
+import retrofit2.HttpException;
 
 import static io.reactivex.Single.just;
 import static org.junit.Assert.*;

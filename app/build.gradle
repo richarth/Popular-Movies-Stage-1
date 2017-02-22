@@ -60,8 +60,8 @@ dependencies {
     compile "com.google.dagger:dagger:${daggerVersion}"
     compile "com.annimon:stream:${streamsBackportVersion}"
     compile "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     compile "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
-    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
 
     apt "com.google.auto.value:auto-value:${autoValueVersion}"
     provided "com.google.auto.value:auto-value:${autoValueVersion}"
