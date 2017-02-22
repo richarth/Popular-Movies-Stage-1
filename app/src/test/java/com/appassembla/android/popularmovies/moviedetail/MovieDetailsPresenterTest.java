@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 
 import static io.reactivex.Single.just;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -68,6 +70,6 @@ public class MovieDetailsPresenterTest {
     public void shouldShowNoMovieDetails() {
         movieDetailsPresenter.displayMovie();
 
-        verify(movieDetailsView).displayMovieDetails(null);
+        verify(movieDetailsView, never()).displayMovieDetails(null);
     }
 }
