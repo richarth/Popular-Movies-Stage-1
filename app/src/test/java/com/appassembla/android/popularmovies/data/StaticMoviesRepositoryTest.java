@@ -1,21 +1,43 @@
 package com.appassembla.android.popularmovies.data;
 
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.observers.TestObserver;
+import io.reactivex.subscribers.TestSubscriber;
 
+import static io.reactivex.Single.just;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by richardthompson on 05/02/2017.
  */
-@RunWith(JUnit4.class)
+@RunWith(MockitoJUnitRunner.class)
 public class StaticMoviesRepositoryTest {
 
     private MoviesRepository moviesRepository;
+
+    @Mock
+    private MoviesRepository emptyMoviesRepository;
+
+    @Mock
+    private HttpException error404;
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Before
     public void setUp() {
@@ -33,9 +55,13 @@ public class StaticMoviesRepositoryTest {
 
     @Test
     public void shouldGetNoMovieWhenIdDoesntExist() {
-        Single<Movie> selectedMovie = moviesRepository.getMovieById(56);
+        when(emptyMoviesRepository.getMovieById(56)).thenReturn(Single.error(error404));
 
-        assertNull(selectedMovie);
+        TestObserver<Movie> testObserver = new TestObserver<>();
+
+        emptyMoviesRepository.getMovieById(56).subscribe(testObserver);
+
+        testObserver.assertError(HttpException.class);
     }
 
     @Test
