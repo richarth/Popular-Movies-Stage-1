@@ -138,6 +138,8 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     public void onStop() {
         super.onStop();
 
+        movieDetailsPresenter.cancelSubscriptions();
+
         movieDetailsPresenter = null;
     }
 }

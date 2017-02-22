@@ -11,6 +11,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.subscriptions.SubscriptionHelper;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -24,6 +26,8 @@ public class MovieListPresenter implements MovieListEvents {
 
     private static final String TAG = "MovieListPresenter";
 
+    private Disposable moviesSubscription;
+
     public MovieListPresenter(@NonNull MovieListView movieListView, @NonNull MoviesRepository moviesRepository) {
         this.movieListView = movieListView;
         this.moviesRepository = moviesRepository;
@@ -35,7 +39,7 @@ public class MovieListPresenter implements MovieListEvents {
         Observable<MoviesListing> movies = moviesRepository.getMovies(movieListSortType);
 
         if (movies != null) {
-            movies.observeOn(AndroidSchedulers.mainThread())
+            moviesSubscription = movies.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::moviesFetched, this::moviesFetchFailure);
         }
@@ -64,5 +68,9 @@ public class MovieListPresenter implements MovieListEvents {
     @Override
     public void movieClicked(int movieId, int adapterPosition) {
          movieListView.displayMovieDetail(movieId, adapterPosition);
+    }
+
+    public void cancelSubscriptions() {
+        moviesSubscription.dispose();
     }
 }

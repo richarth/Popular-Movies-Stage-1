@@ -8,6 +8,7 @@ import com.appassembla.android.popularmovies.data.MoviesRepository;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -21,6 +22,8 @@ class MovieDetailsPresenter {
 
     private final static String TAG = "MovieDetailsPresenter";
 
+    private Disposable movieSubscription;
+
     public MovieDetailsPresenter(@NonNull MovieDetailsView movieDetailsView, @NonNull MoviesRepository moviesRepository, int selectedMovieId) {
         this.movieDetailsView = movieDetailsView;
         this.moviesRepository = moviesRepository;
@@ -31,7 +34,7 @@ class MovieDetailsPresenter {
         Single<Movie> selectedMovie = moviesRepository.getMovieById(selectedMovieId);
 
         if (selectedMovie != null) {
-            selectedMovie.observeOn(AndroidSchedulers.mainThread())
+            movieSubscription = selectedMovie.observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::movieFetched, this::movieFetchFailure);
         }
@@ -43,5 +46,9 @@ class MovieDetailsPresenter {
 
     private void movieFetchFailure(Throwable throwable) {
         Log.d(TAG, throwable.getMessage());
+    }
+
+    public void cancelSubscriptions() {
+        movieSubscription.dispose();
     }
 }
