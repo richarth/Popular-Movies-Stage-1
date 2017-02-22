@@ -81,6 +81,8 @@ public class MovieListPresenterTest {
 
     @Test
     public void shouldToggleProgressBar() {
+        when(moviesRepository.getMovies(MoviesRepository.POPULAR_SORT_TYPE)).thenReturn(SOME_MOVIES_OBSERVABLE);
+
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
         verify(movieListView).showProgressBar();
