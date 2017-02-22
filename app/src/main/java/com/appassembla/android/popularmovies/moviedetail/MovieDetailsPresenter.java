@@ -30,9 +30,11 @@ class MovieDetailsPresenter {
     public void displayMovie() {
         Single<Movie> selectedMovie = moviesRepository.getMovieById(selectedMovieId);
 
-        selectedMovie.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::movieFetched, this::movieFetchFailure);
+        if (selectedMovie != null) {
+            selectedMovie.observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(this::movieFetched, this::movieFetchFailure);
+        }
     }
 
     private void movieFetched(Movie selectedMovie) {

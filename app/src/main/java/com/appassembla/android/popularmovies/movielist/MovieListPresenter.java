@@ -34,9 +34,11 @@ public class MovieListPresenter implements MovieListEvents {
 
         Observable<MoviesListing> movies = moviesRepository.getMovies(movieListSortType);
 
-        movies.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::moviesFetched, this::moviesFetchFailure);
+        if (movies != null) {
+            movies.observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(this::moviesFetched, this::moviesFetchFailure);
+        }
     }
 
     private void moviesFetched(MoviesListing moviesListing) {
