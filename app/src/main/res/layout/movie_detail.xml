@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/select_movie_message"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/select_a_movie"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_centerInParent="true" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

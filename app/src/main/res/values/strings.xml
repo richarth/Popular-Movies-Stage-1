@@ -5,4 +5,5 @@
     <string name="poster_transition">poster_transition</string>
     <string name="sort_by">Sort by</string>
     <string name="sort">Sort</string>
+    <string name="select_a_movie">Select a movie from the list to view its details</string>
 </resources>

@@ -31,6 +31,9 @@ class MovieDetailsPresenter {
     }
 
     public void displayMovie() {
+        // We are now displaying a movie so we no longer need to show the select a movie message
+        movieDetailsView.hideSelectMovieMessage();
+
         Single<Movie> selectedMovie = moviesRepository.getMovieById(selectedMovieId);
 
         if (selectedMovie != null) {
