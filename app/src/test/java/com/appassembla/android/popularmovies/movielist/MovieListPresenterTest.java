@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 
@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
+@SuppressWarnings("unused")
 @RunWith(MockitoJUnitRunner.class)
 public class MovieListPresenterTest {
 
@@ -32,8 +33,8 @@ public class MovieListPresenterTest {
 
     private static final int INVALID_SORT_TYPE = 0;
 
-    private static final Observable<MoviesListing> SOME_MOVIES_OBSERVABLE = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
-    private static final Observable<MoviesListing> NO_MOVIES_OBSERVABLE = new StaticMoviesRepository().getNoMovies();
+    private static final Single<MoviesListing> SOME_MOVIES_OBSERVABLE = new StaticMoviesRepository().getMovies(INVALID_SORT_TYPE);
+    private static final Single<MoviesListing> NO_MOVIES_OBSERVABLE = new StaticMoviesRepository().getNoMovies();
 
     @BeforeClass
     public static void setupClass() {
@@ -52,7 +53,7 @@ public class MovieListPresenterTest {
 
         movieListPresenter.displayMovies(MoviesRepository.POPULAR_SORT_TYPE);
 
-        verify(movieListView).displayMoviesList(SOME_MOVIES_OBSERVABLE.blockingSingle().results());
+        verify(movieListView).displayMoviesList(SOME_MOVIES_OBSERVABLE.blockingGet().results());
     }
 
     @Test

@@ -3,7 +3,6 @@ package com.appassembla.android.popularmovies.data;
 import com.appassembla.android.popularmovies.BuildConfig;
 import com.squareup.moshi.Moshi;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -16,10 +15,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 public class WebMoviesRepository implements MoviesRepository {
 
     private final MovieDBService movieDBService;
-
-    private static final String TAG = "WebMoviesRepository";
-
-    private Movie selectedMovie = null;
 
     public WebMoviesRepository() {
         Moshi moshi = new Moshi.Builder()
@@ -36,8 +31,8 @@ public class WebMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public Observable<MoviesListing> getMovies(int sortType) {
-        Observable<MoviesListing> moviesData;
+    public Single<MoviesListing> getMovies(int sortType) {
+        Single<MoviesListing> moviesData;
 
         if (sortType == MoviesRepository.TOP_RATED_SORT_TYPE) {
             moviesData = movieDBService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY);

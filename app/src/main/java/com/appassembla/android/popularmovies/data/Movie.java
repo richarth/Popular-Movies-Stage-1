@@ -27,9 +27,9 @@ public abstract class Movie {
     @Json(name = "backdrop_path")
     public abstract String backdropUrl();
 
-    public static final String IMG_BASE_URL = "http://image.tmdb.org/t/p/";
-    public static final String POSTER_IMG_SIZE = "w500";
-    public static final String HERO_IMG_SIZE = "w780";
+    private static final String IMG_BASE_URL = "http://image.tmdb.org/t/p/";
+    private static final String POSTER_IMG_SIZE = "w500";
+    private static final String HERO_IMG_SIZE = "w780";
 
     public static Movie create(int id, @NonNull String name, @NonNull String posterUrl, @NonNull String plotSynopsis, double averageRating, @NonNull String releaseDate, @NonNull String backdropUrl) {
         return new AutoValue_Movie(id, name, posterUrl, plotSynopsis, averageRating, releaseDate, backdropUrl);

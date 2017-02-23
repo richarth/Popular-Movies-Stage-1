@@ -9,7 +9,7 @@
         android:id="@+id/movie_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription=""
+        android:contentDescription="@string/poster_for_movie"
         tools:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
         android:transitionName="@string/poster_transition"/>

@@ -36,12 +36,16 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
     private MovieDetailsPresenter movieDetailsPresenter;
 
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.detail_poster_image_view)
     protected ImageView posterImageView;
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.release_date_text_view)
     protected TextView releaseDateTextView;
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.user_rating_text_view)
     protected TextView averageRatingTextView;
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.plot_synopsis_text_view)
     protected TextView synopsisTextView;
     private ImageView heroImage;

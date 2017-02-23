@@ -27,7 +27,8 @@
             android:name=".moviedetail.MovieDetailsActivity"
             android:label="@string/title_movie_detail"
             android:parentActivityName=".movielist.MovieListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.appassembla.android.popularmovies.movielist.MovieListActivity" />

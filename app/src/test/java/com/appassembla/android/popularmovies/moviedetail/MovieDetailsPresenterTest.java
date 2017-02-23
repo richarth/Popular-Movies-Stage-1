@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
@@ -25,6 +24,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
+@SuppressWarnings("unused")
 @RunWith(MockitoJUnitRunner.class)
 public class MovieDetailsPresenterTest {
     @Mock
@@ -37,9 +37,9 @@ public class MovieDetailsPresenterTest {
     private static final int SELECTED_MOVIE_POSITION = 0;
     private static final int MOVIE_SORT_TYPE = 0;
 
-    private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
+    private static final Single<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
-    private static final Single<Movie> SELECTED_MOVIE_OBSERVABLE = just(SOME_MOVIES.blockingSingle().results().get(SELECTED_MOVIE_POSITION));
+    private static final Single<Movie> SELECTED_MOVIE_OBSERVABLE = just(SOME_MOVIES.blockingGet().results().get(SELECTED_MOVIE_POSITION));
 
     @BeforeClass
     public static void setupClass() {

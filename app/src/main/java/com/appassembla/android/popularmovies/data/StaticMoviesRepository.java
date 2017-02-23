@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 import static java.util.Collections.*;
@@ -19,7 +18,6 @@ public class StaticMoviesRepository implements MoviesRepository {
     private final MoviesListing moviesListing;
     private final List<Movie> movies;
     private final MoviesListing emptyMoviesListing;
-    private final List<Movie> noMovies;
 
     public StaticMoviesRepository() {
         Movie movie7 = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
@@ -37,25 +35,23 @@ public class StaticMoviesRepository implements MoviesRepository {
             }
         };
 
-        noMovies = EMPTY_LIST;
-
         emptyMoviesListing = new MoviesListing() {
             @Override
             public List<Movie> results() {
-                return noMovies;
+                return EMPTY_LIST;
             }
         };
     }
 
     @Override
     @NonNull
-    public Observable<MoviesListing> getMovies(int sortType) {
-        return Observable.just(moviesListing);
+    public Single<MoviesListing> getMovies(int sortType) {
+        return Single.just(moviesListing);
     }
 
     @NonNull
-    public Observable<MoviesListing> getNoMovies() {
-        return Observable.just(emptyMoviesListing);
+    public Single<MoviesListing> getNoMovies() {
+        return Single.just(emptyMoviesListing);
     }
 
     @Override

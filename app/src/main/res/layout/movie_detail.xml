@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:paddingRight="8dp"
         android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
         android:id="@+id/detail_poster_image_view"
         tools:src="@mipmap/ic_launcher"
         android:transitionName="@string/poster_transition"
@@ -17,7 +19,8 @@
         tools:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/poster_for_movie"/>
 
     <TextView
         style="?android:attr/textAppearanceLarge"
@@ -25,6 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:paddingBottom="8dp"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:textIsSelectable="true"
@@ -38,6 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:textIsSelectable="true"

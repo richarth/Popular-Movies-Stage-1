@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Created by richardthompson on 19/02/2017.
  */
+@SuppressWarnings("unused")
 @RunWith(JUnit4.class)
 public class MovieTest {
 

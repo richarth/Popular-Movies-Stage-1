@@ -1,5 +1,6 @@
 package com.appassembla.android.popularmovies.movielist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,32 +52,40 @@ import static android.view.View.*;
  */
 public class MovieListActivity extends AppCompatActivity implements MovieListView, AdapterView.OnItemSelectedListener {
 
+    private static final String TAG = "MovieListActivity";
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean isTwoPane;
 
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.movie_list)
     protected RecyclerView recyclerView;
 
+    @SuppressWarnings("WeakerAccess")
     protected MovieListPresenter movieListPresenter;
 
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.no_movies_message)
     protected TextView noMoviesTextView;
 
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
+    @SuppressWarnings("WeakerAccess")
     @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
 
+    @SuppressWarnings("WeakerAccess")
     @Nullable
     @BindView(R.id.select_movie_message)
     protected TextView selectMovieMessage;
 
     private Spinner sortSpinner;
 
+    @SuppressWarnings("WeakerAccess")
     @Nullable
     @BindView(R.id.movie_detail_container)
     protected FrameLayout movieDetailContainer;
@@ -139,15 +149,22 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         MenuItem item = menu.findItem(R.id.sort_order_spinner);
         sortSpinner = (Spinner) MenuItemCompat.getActionView(item);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
-                R.array.sort_order_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        try {
 
-        sortSpinner.setAdapter(adapter);
+            Context themedContext = getSupportActionBar().getThemedContext();
 
-        sortSpinner.setSelection(lastSelectedSpinnerPosition);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(themedContext,
+                        R.array.sort_order_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        sortSpinner.setOnItemSelectedListener(this);
+            sortSpinner.setAdapter(adapter);
+
+            sortSpinner.setSelection(lastSelectedSpinnerPosition);
+
+            sortSpinner.setOnItemSelectedListener(this);
+        } catch (NullPointerException e) {
+            Log.d(TAG, e.getMessage());
+        }
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
@@ -199,16 +216,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     private void hideSelectMovieMessage() {
-        selectMovieMessage.setVisibility(GONE);
+        if (selectMovieMessage != null && selectMovieMessage.getVisibility() == VISIBLE) {
+            selectMovieMessage.setVisibility(GONE);
+        }
     }
 
     @Override
     public void displayMovieDetail(int moviePositionInRepository, int moviePositionInAdapter) {
         if (isTwoPane) {
             // The user has now chosen a film so we can hide the select a film message if it isn't
-            if (selectMovieMessage.getVisibility() == VISIBLE) {
-                hideSelectMovieMessage();
-            }
+            hideSelectMovieMessage();
 
             Bundle arguments = new Bundle();
             arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);

@@ -9,7 +9,7 @@ import com.appassembla.android.popularmovies.data.MoviesRepository;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -35,7 +35,7 @@ public class MovieListPresenter implements MovieListEvents {
     public void displayMovies(int movieListSortType) {
         movieListView.showProgressBar();
 
-        Observable<MoviesListing> movies = moviesRepository.getMovies(movieListSortType);
+        Single<MoviesListing> movies = moviesRepository.getMovies(movieListSortType);
 
         if (movies != null) {
             moviesSubscription = movies.observeOn(AndroidSchedulers.mainThread())
@@ -64,7 +64,6 @@ public class MovieListPresenter implements MovieListEvents {
         movieListView.hideProgressBar();
     }
 
-    @Override
     public void movieClicked(int movieId, int adapterPosition) {
          movieListView.displayMovieDetail(movieId, adapterPosition);
     }

@@ -6,4 +6,6 @@
     <string name="sort_by">Sort by</string>
     <string name="sort">Sort</string>
     <string name="select_a_movie">Select a movie from the list to view its details</string>
+    <string name="poster_for_movie">Poster for movie</string>
+    <string name="image_from_movie">Image from movie</string>
 </resources>
