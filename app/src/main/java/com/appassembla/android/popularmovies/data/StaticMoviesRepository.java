@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import io.reactivex.Single;
 
@@ -59,8 +60,10 @@ public class StaticMoviesRepository implements MoviesRepository {
 
         Movie selectedMovie = null;
 
-        if (movies.stream().filter(m -> m.id() == movieId).findFirst().isPresent()) {
-            selectedMovie = movies.stream().filter(m -> m.id() == movieId).findFirst().get();
+        Optional<Movie> firstMovieInList = movies.stream().filter(m -> m.id() == movieId).findFirst();
+
+        if (firstMovieInList.isPresent()) {
+            selectedMovie = firstMovieInList.get();
         }
 
         if (selectedMovie != null) {
