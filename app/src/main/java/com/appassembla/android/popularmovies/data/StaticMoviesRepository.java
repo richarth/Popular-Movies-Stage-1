@@ -1,5 +1,6 @@
 package com.appassembla.android.popularmovies.data;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
@@ -55,6 +56,7 @@ public class StaticMoviesRepository implements MoviesRepository {
         return Single.just(emptyMoviesListing);
     }
 
+    @SuppressLint("NewApi")
     @Override
     public Single<Movie> getMovieById(final int movieId) {
 
