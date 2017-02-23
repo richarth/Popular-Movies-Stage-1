@@ -56,8 +56,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     protected TextView averageRatingTextView;
     @BindView(R.id.plot_synopsis_text_view)
     protected TextView synopsisTextView;
-    @BindView(R.id.select_movie_message)
-    protected TextView selectMovieTextView;
     private ImageView heroImage;
     private CollapsingToolbarLayout appBarLayout;
 
@@ -136,11 +134,6 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         averageRatingTextView.setText(averageRating);
 
         synopsisTextView.setText(selectedMovie.plotSynopsis());
-    }
-
-    @Override
-    public void hideSelectMovieMessage() {
-        selectMovieTextView.setVisibility(GONE);
     }
 
     @Override

@@ -29,9 +29,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @BindView(R.id.detail_toolbar)
     protected Toolbar toolbar;
 
-    @BindView(R.id.select_movie_message)
-    protected TextView selectMovieTextView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +39,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         setupToolbar();
 
         showUpButton();
-
-        // To get here we must be on a phone and have selected a movie
-        // Therefore we don't need to display the select a movie message (it's tablet only)
-        hideSelectMovieMessage();
 
         if (savedInstanceState == null) {
             addMovieDetailsFragment();
@@ -85,9 +78,5 @@ public class MovieDetailsActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.movie_detail_container, fragment)
                 .commit();
-    }
-
-    private void hideSelectMovieMessage() {
-        selectMovieTextView.setVisibility(GONE);
     }
 }

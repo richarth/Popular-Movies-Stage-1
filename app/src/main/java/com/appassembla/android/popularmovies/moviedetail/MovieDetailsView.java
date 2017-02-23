@@ -7,5 +7,4 @@ import com.appassembla.android.popularmovies.data.Movie;
  */
 interface MovieDetailsView {
     void displayMovieDetails(Movie selectedMovie);
-    void hideSelectMovieMessage();
 }
