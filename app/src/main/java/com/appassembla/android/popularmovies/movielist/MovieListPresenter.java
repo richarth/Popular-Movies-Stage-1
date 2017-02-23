@@ -64,7 +64,6 @@ public class MovieListPresenter implements MovieListEvents {
         movieListView.hideProgressBar();
     }
 
-    @Override
     public void movieClicked(int movieId, int adapterPosition) {
          movieListView.displayMovieDetail(movieId, adapterPosition);
     }
