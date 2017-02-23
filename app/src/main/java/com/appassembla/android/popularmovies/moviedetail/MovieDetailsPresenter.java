@@ -49,6 +49,8 @@ class MovieDetailsPresenter {
     }
 
     public void cancelSubscriptions() {
-        movieSubscription.dispose();
+        if (movieSubscription != null) {
+            movieSubscription.dispose();
+        }
     }
 }

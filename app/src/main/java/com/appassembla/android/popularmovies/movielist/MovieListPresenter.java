@@ -70,6 +70,8 @@ public class MovieListPresenter implements MovieListEvents {
     }
 
     public void cancelSubscriptions() {
-        moviesSubscription.dispose();
+        if (moviesSubscription != null) {
+            moviesSubscription.dispose();
+        }
     }
 }
