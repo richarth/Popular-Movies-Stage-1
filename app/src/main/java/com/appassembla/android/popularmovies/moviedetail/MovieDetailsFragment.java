@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -112,6 +113,18 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
         Picasso.with(getActivity()).load(selectedMovie.getPosterImgFullUrl()).into(posterImageView);
 
         posterImageView.setContentDescription(selectedMovie.name());
+
+        // We now have the poster image so can start the activity transition of that image
+        posterImageView.getViewTreeObserver().addOnPreDrawListener(
+                new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public boolean onPreDraw() {
+                        posterImageView.getViewTreeObserver().removeOnPreDrawListener(this);
+                        getActivity().supportStartPostponedEnterTransition();
+                        return true;
+                    }
+                }
+        );
 
         // on tablet the hero image won't be present
         if (heroImage != null) {
