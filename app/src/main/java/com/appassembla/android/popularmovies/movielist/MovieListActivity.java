@@ -1,5 +1,6 @@
 package com.appassembla.android.popularmovies.movielist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -146,15 +147,20 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         MenuItem item = menu.findItem(R.id.sort_order_spinner);
         sortSpinner = (Spinner) MenuItemCompat.getActionView(item);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getSupportActionBar().getThemedContext(),
-                R.array.sort_order_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Context themedContext = getSupportActionBar().getThemedContext();
 
-        sortSpinner.setAdapter(adapter);
+        if (themedContext != null) {
 
-        sortSpinner.setSelection(lastSelectedSpinnerPosition);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(themedContext,
+                    R.array.sort_order_array, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        sortSpinner.setOnItemSelectedListener(this);
+            sortSpinner.setAdapter(adapter);
+
+            sortSpinner.setSelection(lastSelectedSpinnerPosition);
+
+            sortSpinner.setOnItemSelectedListener(this);
+        }
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, @NonNull List<Movie> movies) {
