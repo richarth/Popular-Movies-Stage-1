@@ -1,10 +1,5 @@
 package com.appassembla.android.popularmovies.data;
 
-import android.util.Log;
-
-import java.util.Collections;
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.Single;
 

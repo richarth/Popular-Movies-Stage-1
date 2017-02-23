@@ -1,6 +1,5 @@
 package com.appassembla.android.popularmovies.movielist;
 
-import com.appassembla.android.popularmovies.data.Movie;
 import com.appassembla.android.popularmovies.data.MoviesListing;
 import com.appassembla.android.popularmovies.data.MoviesRepository;
 import com.appassembla.android.popularmovies.data.StaticMoviesRepository;
@@ -11,16 +10,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.reactivestreams.Subscriber;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.schedulers.Schedulers;
 
-import static io.reactivex.Observable.just;
-import static java.util.Collections.EMPTY_LIST;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

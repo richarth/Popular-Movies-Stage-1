@@ -1,12 +1,8 @@
 package com.appassembla.android.popularmovies.movielist;
 
 import com.appassembla.android.popularmovies.data.Movie;
-import com.appassembla.android.popularmovies.data.MoviesListing;
 
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by Richard Thompson on 04/02/2017.

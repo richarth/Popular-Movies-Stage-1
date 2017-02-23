@@ -9,8 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-import static io.reactivex.Single.just;
-
 /**
  * Created by richard.thompson on 08/02/2017.
  */

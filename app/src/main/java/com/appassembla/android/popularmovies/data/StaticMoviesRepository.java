@@ -8,7 +8,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 
-import static io.reactivex.Observable.just;
 import static java.util.Collections.*;
 
 /**

@@ -1,22 +1,16 @@
 package com.appassembla.android.popularmovies.moviedetail;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.view.View.GONE;
 
 /**
  * An activity representing a single Movie detail screen. This
