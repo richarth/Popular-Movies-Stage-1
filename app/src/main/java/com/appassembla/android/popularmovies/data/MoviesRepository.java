@@ -1,6 +1,5 @@
 package com.appassembla.android.popularmovies.data;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**

@@ -3,7 +3,6 @@ package com.appassembla.android.popularmovies.data;
 import com.appassembla.android.popularmovies.BuildConfig;
 import com.squareup.moshi.Moshi;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

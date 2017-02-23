@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import java.util.Arrays;
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 import static java.util.Collections.*;
