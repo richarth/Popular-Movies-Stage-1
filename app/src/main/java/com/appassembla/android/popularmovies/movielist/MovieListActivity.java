@@ -204,16 +204,16 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     private void hideSelectMovieMessage() {
-        selectMovieMessage.setVisibility(GONE);
+        if (selectMovieMessage != null && selectMovieMessage.getVisibility() == VISIBLE) {
+            selectMovieMessage.setVisibility(GONE);
+        }
     }
 
     @Override
     public void displayMovieDetail(int moviePositionInRepository, int moviePositionInAdapter) {
         if (isTwoPane) {
             // The user has now chosen a film so we can hide the select a film message if it isn't
-            if (selectMovieMessage.getVisibility() == VISIBLE) {
-                hideSelectMovieMessage();
-            }
+            hideSelectMovieMessage();
 
             Bundle arguments = new Bundle();
             arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
