@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +52,7 @@ import static android.view.View.*;
  */
 public class MovieListActivity extends AppCompatActivity implements MovieListView, AdapterView.OnItemSelectedListener {
 
+    private static final String TAG = "MovieListActivity";
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -147,12 +149,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         MenuItem item = menu.findItem(R.id.sort_order_spinner);
         sortSpinner = (Spinner) MenuItemCompat.getActionView(item);
 
-        Context themedContext = getSupportActionBar().getThemedContext();
+        try {
 
-        if (themedContext != null) {
+            Context themedContext = getSupportActionBar().getThemedContext();
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(themedContext,
-                    R.array.sort_order_array, android.R.layout.simple_spinner_item);
+                        R.array.sort_order_array, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             sortSpinner.setAdapter(adapter);
@@ -160,6 +162,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
             sortSpinner.setSelection(lastSelectedSpinnerPosition);
 
             sortSpinner.setOnItemSelectedListener(this);
+        } catch (NullPointerException e) {
+            Log.d(TAG, e.getMessage());
         }
     }
 
