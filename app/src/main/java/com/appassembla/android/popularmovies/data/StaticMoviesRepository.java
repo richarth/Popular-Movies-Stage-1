@@ -18,7 +18,6 @@ public class StaticMoviesRepository implements MoviesRepository {
     private final MoviesListing moviesListing;
     private final List<Movie> movies;
     private final MoviesListing emptyMoviesListing;
-    private final List<Movie> noMovies;
 
     public StaticMoviesRepository() {
         Movie movie7 = Movie.create(7, "Movie 7", "http://i.imgur.com/DvpvklR.png", "Movie 7 is about Jedi", 0, "1979-05-04", "http://i.imgur.com/DvpvklR.png");
@@ -36,12 +35,10 @@ public class StaticMoviesRepository implements MoviesRepository {
             }
         };
 
-        noMovies = EMPTY_LIST;
-
         emptyMoviesListing = new MoviesListing() {
             @Override
             public List<Movie> results() {
-                return noMovies;
+                return EMPTY_LIST;
             }
         };
     }
