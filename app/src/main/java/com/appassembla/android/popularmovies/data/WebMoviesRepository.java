@@ -16,10 +16,6 @@ public class WebMoviesRepository implements MoviesRepository {
 
     private final MovieDBService movieDBService;
 
-    private static final String TAG = "WebMoviesRepository";
-
-    private Movie selectedMovie = null;
-
     public WebMoviesRepository() {
         Moshi moshi = new Moshi.Builder()
                 .add(MovieAdapterFactory.create())
