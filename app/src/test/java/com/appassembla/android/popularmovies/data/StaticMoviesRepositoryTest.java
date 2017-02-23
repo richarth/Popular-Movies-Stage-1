@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by richardthompson on 05/02/2017.
  */
+@SuppressWarnings("unused")
 @RunWith(MockitoJUnitRunner.class)
 public class StaticMoviesRepositoryTest {
 

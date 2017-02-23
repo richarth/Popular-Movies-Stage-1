@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
+@SuppressWarnings("unused")
 @RunWith(MockitoJUnitRunner.class)
 public class MovieDetailsPresenterTest {
     @Mock
