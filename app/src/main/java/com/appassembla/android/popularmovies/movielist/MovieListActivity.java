@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -244,12 +245,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MovieListActivity.this, currentPositionViewHolder.posterView, transName);
 
-            // Animated transitions are only supported from Jelly Bean and up
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                startActivity(intent, optionsCompat.toBundle());
-            } else {
-                startActivity(intent);
-            }
+            ActivityCompat.startActivity(MovieListActivity.this, intent, optionsCompat.toBundle());
+
         }
     }
 
