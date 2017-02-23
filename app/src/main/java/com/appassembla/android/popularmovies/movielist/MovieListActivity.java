@@ -100,21 +100,21 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
         ButterKnife.bind(this);
 
-        setupToolbar();
-
         checkIfInTwoPaneMode();
-    }
 
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
+        setupToolbar();
 
         setupPresenter();
 
         int desiredMoviesSortOrder = Movie.determineDesiredSortOrder(lastSelectedSpinnerPosition);
 
         movieListPresenter.displayMovies(desiredMoviesSortOrder);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
         restoreRecyclerViewState();
     }
@@ -178,6 +178,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         noMoviesTextView.setVisibility(INVISIBLE);
 
         setupRecyclerView(recyclerView, movies);
+
+        restoreRecyclerViewState();
     }
 
     @Override
@@ -257,8 +259,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
 
         movieListPresenter.cancelSubscriptions();
 
@@ -273,7 +275,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        movieListPresenter.displayMovies(position + 1);
+        // if we are just restoring the app state then we don't need to load an alternate list
+        if (position != lastSelectedSpinnerPosition) {
+            movieListPresenter.displayMovies(position + 1);
+        }
     }
 
     @Override
