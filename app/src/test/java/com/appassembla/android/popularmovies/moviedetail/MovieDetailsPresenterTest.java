@@ -37,9 +37,9 @@ public class MovieDetailsPresenterTest {
     private static final int SELECTED_MOVIE_POSITION = 0;
     private static final int MOVIE_SORT_TYPE = 0;
 
-    private static final Observable<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
+    private static final Single<MoviesListing> SOME_MOVIES = new StaticMoviesRepository().getMovies(MOVIE_SORT_TYPE);
 
-    private static final Single<Movie> SELECTED_MOVIE_OBSERVABLE = just(SOME_MOVIES.blockingSingle().results().get(SELECTED_MOVIE_POSITION));
+    private static final Single<Movie> SELECTED_MOVIE_OBSERVABLE = just(SOME_MOVIES.blockingGet().results().get(SELECTED_MOVIE_POSITION));
 
     @BeforeClass
     public static void setupClass() {

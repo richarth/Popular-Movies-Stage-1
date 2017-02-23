@@ -49,13 +49,13 @@ public class StaticMoviesRepository implements MoviesRepository {
 
     @Override
     @NonNull
-    public Observable<MoviesListing> getMovies(int sortType) {
-        return Observable.just(moviesListing);
+    public Single<MoviesListing> getMovies(int sortType) {
+        return Single.just(moviesListing);
     }
 
     @NonNull
-    public Observable<MoviesListing> getNoMovies() {
-        return Observable.just(emptyMoviesListing);
+    public Single<MoviesListing> getNoMovies() {
+        return Single.just(emptyMoviesListing);
     }
 
     @Override

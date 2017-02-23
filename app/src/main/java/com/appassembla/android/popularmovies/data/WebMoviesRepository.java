@@ -36,8 +36,8 @@ public class WebMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public Observable<MoviesListing> getMovies(int sortType) {
-        Observable<MoviesListing> moviesData;
+    public Single<MoviesListing> getMovies(int sortType) {
+        Single<MoviesListing> moviesData;
 
         if (sortType == MoviesRepository.TOP_RATED_SORT_TYPE) {
             moviesData = movieDBService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY);

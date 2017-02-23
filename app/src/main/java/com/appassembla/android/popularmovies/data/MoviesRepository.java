@@ -11,7 +11,7 @@ public interface MoviesRepository {
     int POPULAR_SORT_TYPE = 1;
     int TOP_RATED_SORT_TYPE = 2;
 
-    Observable<MoviesListing> getMovies(int sortType);
+    Single<MoviesListing> getMovies(int sortType);
 
     Single<Movie> getMovieById(int movieId);
 }
