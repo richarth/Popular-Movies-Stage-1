@@ -278,7 +278,9 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(KEY_SPINNER_POSITION, sortSpinner.getSelectedItemPosition());
+        if (sortSpinner != null) {
+            outState.putInt(KEY_SPINNER_POSITION, sortSpinner.getSelectedItemPosition());
+        }
     }
 
     @Override
