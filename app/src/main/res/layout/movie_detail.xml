@@ -20,7 +20,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:contentDescription="@string/poster_for_movie"/>
+        android:contentDescription="@string/poster_for_movie"
+        tools:ignore="UnusedAttribute" />
 
     <TextView
         style="?android:attr/textAppearanceLarge"

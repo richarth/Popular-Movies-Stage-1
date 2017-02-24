@@ -12,6 +12,7 @@
         android:contentDescription="@string/poster_for_movie"
         tools:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
-        android:transitionName="@string/poster_transition"/>
+        android:transitionName="@string/poster_transition"
+        tools:ignore="UnusedAttribute" />
 
 </FrameLayout>
