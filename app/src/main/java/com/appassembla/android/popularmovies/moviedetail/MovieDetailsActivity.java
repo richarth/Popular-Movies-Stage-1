@@ -5,8 +5,6 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import com.appassembla.android.popularmovies.R;
 import com.appassembla.android.popularmovies.movielist.MovieListActivity;
