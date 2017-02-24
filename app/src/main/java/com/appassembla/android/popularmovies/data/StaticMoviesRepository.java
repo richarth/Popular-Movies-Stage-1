@@ -10,8 +10,6 @@ import java.util.Optional;
 
 import io.reactivex.Single;
 
-import static java.util.Collections.*;
-
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
