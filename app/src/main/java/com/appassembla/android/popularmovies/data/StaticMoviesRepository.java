@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class StaticMoviesRepository implements MoviesRepository {
         emptyMoviesListing = new MoviesListing() {
             @Override
             public List<Movie> results() {
-                return EMPTY_LIST;
+                return Collections.emptyList();
             }
         };
     }
