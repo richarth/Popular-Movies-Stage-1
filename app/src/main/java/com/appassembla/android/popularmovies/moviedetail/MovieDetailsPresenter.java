@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Richard Thompson on 04/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 class MovieDetailsPresenter {
     private final MovieDetailsView movieDetailsView;
     private final MoviesRepository moviesRepository;

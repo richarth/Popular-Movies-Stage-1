@@ -11,6 +11,7 @@ import com.squareup.moshi.Moshi;
  * Created by Richard Thompson on 04/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @AutoValue
 public abstract class Movie {
     public abstract int id();

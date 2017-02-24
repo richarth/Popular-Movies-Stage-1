@@ -8,6 +8,7 @@ import com.squareup.leakcanary.LeakCanary;
  * Created by richardthompson on 11/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class BaseApplication extends Application {
     @Override
     public void onCreate() {

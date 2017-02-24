@@ -8,6 +8,7 @@ import java.util.List;
  * Created by Richard Thompson on 04/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 interface MovieListView {
     void displayMoviesList(List<Movie> moviesList);
     void displayNoMoviesMessage();

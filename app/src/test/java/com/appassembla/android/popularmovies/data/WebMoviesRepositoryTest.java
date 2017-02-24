@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 /**
  * Created by richard.thompson on 08/02/2017.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
 @RunWith(JUnit4.class)
 public class WebMoviesRepositoryTest {
     @Test

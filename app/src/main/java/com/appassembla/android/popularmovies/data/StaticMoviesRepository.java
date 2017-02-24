@@ -15,6 +15,7 @@ import static java.util.Collections.*;
  * Created by Richard Thompson on 04/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class StaticMoviesRepository implements MoviesRepository {
 
     private final MoviesListing moviesListing;

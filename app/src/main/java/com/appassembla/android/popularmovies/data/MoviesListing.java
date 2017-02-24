@@ -10,6 +10,7 @@ import java.util.List;
  * Created by richardthompson on 10/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @AutoValue
 public abstract class MoviesListing {
     public abstract List<Movie> results();

@@ -12,6 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
  * Created by richard.thompson on 08/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class WebMoviesRepository implements MoviesRepository {
 
     private final MovieDBService movieDBService;

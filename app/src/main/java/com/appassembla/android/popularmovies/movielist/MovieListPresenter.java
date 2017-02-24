@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Richard Thompson on 04/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class MovieListPresenter implements MovieListEvents {
 
     private final MovieListView movieListView;

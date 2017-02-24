@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by Richard Thompson on 04/02/2017.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "DefaultFileTemplate"})
 @RunWith(MockitoJUnitRunner.class)
 public class MovieListPresenterTest {
 

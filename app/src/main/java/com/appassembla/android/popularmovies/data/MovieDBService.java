@@ -9,6 +9,7 @@ import retrofit2.http.Query;
  * Created by richard.thompson on 08/02/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 interface MovieDBService {
     @GET("3/movie/popular")
     Single<MoviesListing> getPopularMovies(@Query("api_key") String apiKey);
