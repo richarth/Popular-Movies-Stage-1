@@ -168,6 +168,8 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         GridLayoutManager gridLayoutManager = new GridLayoutManager(MovieListActivity.this, NUM_COLUMNS_IN_LIST);
 
         recyclerView.setLayoutManager(gridLayoutManager);
+
+        recyclerView.setHasFixedSize(true);
     }
 
     private void setupPresenter() {
