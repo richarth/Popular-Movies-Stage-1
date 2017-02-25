@@ -8,4 +8,5 @@ import com.appassembla.android.popularmovies.data.Movie;
 @SuppressWarnings("DefaultFileTemplate")
 interface MovieDetailsView {
     void displayMovieDetails(Movie selectedMovie);
+    void hideSelectMovieMessage();
 }

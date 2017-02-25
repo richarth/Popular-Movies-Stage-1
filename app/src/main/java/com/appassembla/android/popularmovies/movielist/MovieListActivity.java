@@ -76,11 +76,6 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
     @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
 
-    @SuppressWarnings("WeakerAccess")
-    @Nullable
-    @BindView(R.id.select_movie_message)
-    protected TextView selectMovieMessage;
-
     private Spinner sortSpinner;
 
     @SuppressWarnings("WeakerAccess")
@@ -212,18 +207,10 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
         progressBar.setVisibility(GONE);
     }
 
-    private void hideSelectMovieMessage() {
-        if (selectMovieMessage != null && selectMovieMessage.getVisibility() == VISIBLE) {
-            selectMovieMessage.setVisibility(GONE);
-        }
-    }
 
     @Override
     public void displayMovieDetail(int moviePositionInRepository, int moviePositionInAdapter) {
         if (isTwoPane) {
-            // The user has now chosen a film so we can hide the select a film message if it isn't
-            hideSelectMovieMessage();
-
             Bundle arguments = new Bundle();
             arguments.putInt(MovieDetailsFragment.ARG_ITEM_ID, moviePositionInRepository);
             MovieDetailsFragment fragment = new MovieDetailsFragment();

@@ -42,6 +42,8 @@ class MovieDetailsPresenter {
     }
 
     private void movieFetched(Movie selectedMovie) {
+        movieDetailsView.hideSelectMovieMessage();
+
         movieDetailsView.displayMovieDetails(selectedMovie);
     }
 

@@ -146,6 +146,15 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     }
 
     @Override
+    public void hideSelectMovieMessage() {
+        TextView selectMovieMessage = (TextView) getActivity().findViewById(R.id.select_movie_message);
+
+        if (selectMovieMessage != null) {
+            selectMovieMessage.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
