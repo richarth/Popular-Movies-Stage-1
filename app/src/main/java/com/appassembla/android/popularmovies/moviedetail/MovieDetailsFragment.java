@@ -110,7 +110,11 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     public void displayMovieDetails(@NonNull Movie selectedMovie) {
         setToolbarTitle(selectedMovie.name());
 
-        Picasso.with(getActivity()).load(selectedMovie.getPosterImgFullUrl()).into(posterImageView);
+        int detailsViewWidth = getActivity().findViewById(R.id.movie_detail_container).getWidth();
+
+        int posterImageWidth = detailsViewWidth / 2;
+
+        Picasso.with(getActivity()).load(selectedMovie.getPosterImgFullUrl(posterImageWidth)).resize(posterImageWidth, 0).into(posterImageView);
 
         posterImageView.setContentDescription(selectedMovie.name());
 
@@ -128,7 +132,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         // on tablet the hero image won't be present
         if (heroImage != null) {
-            Picasso.with(getActivity()).load(selectedMovie.getHeroImgFullUrl()).into(heroImage);
+            Picasso.with(getActivity()).load(selectedMovie.getHeroImgFullUrl(detailsViewWidth)).resize(detailsViewWidth, 0).into(heroImage);
 
             heroImage.setContentDescription(selectedMovie.name());
         }

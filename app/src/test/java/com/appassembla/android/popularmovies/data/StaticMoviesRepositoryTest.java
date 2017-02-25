@@ -24,6 +24,9 @@ public class StaticMoviesRepositoryTest {
 
     private MoviesRepository moviesRepository;
 
+    private static int LIST_WIDTH_IN_PIXELS = 720;
+    private static int DETAILS_VIEW_WIDTH_IN_PIXELS = 500;
+
     @Mock
     private MoviesRepository emptyMoviesRepository;
 
@@ -80,7 +83,7 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetValidPosterImgUrl() {
         Movie testMovie = Movie.create(7, "Movie 7", "/DvpvklR.png", "Movie 7 is about Jedi", 0, "", "/DvpvklR2.png");
 
-        String posterUrl = testMovie.getPosterImgFullUrl();
+        String posterUrl = testMovie.getPosterImgFullUrl(LIST_WIDTH_IN_PIXELS);
 
         assertEquals("http://image.tmdb.org/t/p/w500/DvpvklR.png", posterUrl);
     }
@@ -89,7 +92,7 @@ public class StaticMoviesRepositoryTest {
     public void shouldGetValidHeroImgUrl() {
         Movie testMovie = Movie.create(7, "Movie 7", "/DvpvklR.png", "Movie 7 is about Jedi", 0, "", "/DvpvklR2.png");
 
-        String posterUrl = testMovie.getHeroImgFullUrl();
+        String posterUrl = testMovie.getHeroImgFullUrl(DETAILS_VIEW_WIDTH_IN_PIXELS);
 
         assertEquals("http://image.tmdb.org/t/p/w780/DvpvklR2.png", posterUrl);
     }
