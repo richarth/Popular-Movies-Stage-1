@@ -41,6 +41,7 @@ ext {
     leakCanaryVersion = '1.5'
     jUnitVersion = '4.12'
     mockitoVersion = '2.7.10'
+    constraintLayoutVersion = '1.0.0'
 }
 
 dependencies {
@@ -62,7 +63,7 @@ dependencies {
     compile "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
     compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     compile "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    compile "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
 
     apt "com.google.auto.value:auto-value:${autoValueVersion}"
     provided "com.google.auto.value:auto-value:${autoValueVersion}"
