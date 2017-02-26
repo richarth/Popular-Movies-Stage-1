@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/details_scroll_view">
 
     <LinearLayout
         android:layout_height="wrap_content"

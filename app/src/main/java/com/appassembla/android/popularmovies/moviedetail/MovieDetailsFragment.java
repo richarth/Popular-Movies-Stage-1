@@ -110,7 +110,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
     public void displayMovieDetails(@NonNull Movie selectedMovie) {
         setToolbarTitle(selectedMovie.name());
 
-        int detailsViewWidth = getActivity().findViewById(R.id.movie_detail_container).getWidth();
+        int detailsViewWidth = getActivity().findViewById(R.id.details_scroll_view).getWidth();
 
         int posterImageWidth = detailsViewWidth / 2;
 
