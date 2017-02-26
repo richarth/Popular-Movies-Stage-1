@@ -274,10 +274,7 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // if we are just restoring the app state then we don't need to load an alternate list
-        if (position != lastSelectedSpinnerPosition) {
-            movieListPresenter.displayMovies(position + 1);
-        }
+        movieListPresenter.displayMovies(position + 1);
     }
 
     @Override
