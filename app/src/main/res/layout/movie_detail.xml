@@ -1,66 +1,72 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.appassembla.android.popularmovies.moviedetail.MovieDetailsFragment"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingStart="16dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/detail_poster_image_view"
-        tools:src="@mipmap/ic_launcher"
-        android:transitionName="@string/poster_transition"
-        android:contentDescription="@string/poster_for_movie"
-        tools:ignore="UnusedAttribute"
-        android:layout_weight="1"/>
-
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp">
+            android:orientation="horizontal">
 
-            <TextView
-                style="?android:attr/textAppearanceLarge"
-                android:id="@+id/release_date_text_view"
+            <ImageView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textIsSelectable="true"
-                tools:text="1991" />
+                android:id="@+id/detail_poster_image_view"
+                tools:src="@mipmap/ic_launcher"
+                android:transitionName="@string/poster_transition"
+                android:contentDescription="@string/poster_for_movie"
+                tools:ignore="UnusedAttribute"
+                android:layout_weight="1"/>
 
-            <TextView
-                style="?android:attr/textAppearanceMedium"
-                android:id="@+id/user_rating_text_view"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:textIsSelectable="true"
-                tools:text="5.8/10" />
+                android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    style="?android:attr/textAppearanceLarge"
+                    android:id="@+id/release_date_text_view"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textIsSelectable="true"
+                    tools:text="1991" />
+
+                <TextView
+                    style="?android:attr/textAppearanceMedium"
+                    android:id="@+id/user_rating_text_view"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textIsSelectable="true"
+                    tools:text="5.8/10" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <TextView
+            style="?android:attr/textAppearanceMedium"
+            android:id="@+id/plot_synopsis_text_view"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:textIsSelectable="true"
+            tools:text="This is a movie about making an Android app..." />
+
     </LinearLayout>
 
-    <TextView
-        style="?android:attr/textAppearanceMedium"
-        android:id="@+id/plot_synopsis_text_view"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:textIsSelectable="true"
-        tools:text="This is a movie about making an Android app..." />
-
-</LinearLayout>
+</ScrollView>
