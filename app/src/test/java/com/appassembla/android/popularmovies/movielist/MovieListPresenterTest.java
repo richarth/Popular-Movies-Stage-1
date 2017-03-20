@@ -13,6 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import io.reactivex.Single;
 import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.mockito.Mockito.verify;
@@ -39,6 +40,8 @@ public class MovieListPresenterTest {
     @BeforeClass
     public static void setupClass() {
         RxAndroidPlugins.setInitMainThreadSchedulerHandler(
+                __ -> Schedulers.trampoline());
+        RxJavaPlugins.setIoSchedulerHandler(
                 __ -> Schedulers.trampoline());
     }
 
