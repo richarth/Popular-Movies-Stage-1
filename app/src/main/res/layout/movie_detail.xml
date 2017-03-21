@@ -24,7 +24,8 @@
                 android:transitionName="@string/poster_transition"
                 android:contentDescription="@string/poster_for_movie"
                 tools:ignore="UnusedAttribute"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:adjustViewBounds="true"/>
 
 
             <LinearLayout

@@ -13,6 +13,7 @@
         tools:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
         android:transitionName="@string/poster_transition"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="UnusedAttribute"
+        android:adjustViewBounds="true"/>
 
 </FrameLayout>
