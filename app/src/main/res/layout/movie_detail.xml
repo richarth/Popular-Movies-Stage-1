@@ -20,7 +20,7 @@
                 android:layout_width="@dimen/weighted_dimension_empty"
                 android:layout_height="wrap_content"
                 android:id="@+id/detail_poster_image_view"
-                tools:src="@mipmap/ic_launcher"
+                tools:src="@drawable/no_movie_poster"
                 android:transitionName="@string/poster_transition"
                 android:contentDescription="@string/poster_for_movie"
                 tools:ignore="UnusedAttribute"

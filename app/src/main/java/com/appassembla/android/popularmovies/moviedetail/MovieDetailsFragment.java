@@ -114,7 +114,11 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView {
 
         int posterImageWidth = detailsViewWidth / 2;
 
-        Picasso.with(getActivity()).load(selectedMovie.getPosterImgFullUrl(posterImageWidth)).resize(posterImageWidth, 0).into(posterImageView);
+        Picasso.with(getActivity()).load(selectedMovie.getPosterImgFullUrl(posterImageWidth))
+                .placeholder(R.drawable.no_movie_poster)
+                .error(R.drawable.no_movie_poster)
+                .fit()
+                .into(posterImageView);
 
         posterImageView.setContentDescription(selectedMovie.name());
 

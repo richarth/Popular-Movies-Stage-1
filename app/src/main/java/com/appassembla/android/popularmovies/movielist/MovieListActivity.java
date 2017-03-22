@@ -304,7 +304,12 @@ public class MovieListActivity extends AppCompatActivity implements MovieListVie
 
             int columnWidth = listWidth / NUM_COLUMNS_IN_LIST;
 
-            Picasso.with(getApplication()).load(mValues.get(position).getPosterImgFullUrl(listWidth)).resize(columnWidth, 0).into(holder.posterView);
+            Picasso.with(getApplication())
+                    .load(mValues.get(position).getPosterImgFullUrl(listWidth))
+                    .placeholder(R.drawable.no_movie_poster)
+                    .error(R.drawable.no_movie_poster)
+                    .fit()
+                    .into(holder.posterView);
             holder.posterView.setContentDescription(mValues.get(position).name());
 
             int clickedPosition = holder.getAdapterPosition();
